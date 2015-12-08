@@ -1,4 +1,4 @@
-package core.repositories;
+package repositories;
 
 import static org.junit.Assert.*;
 
@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import core.models.entities.Merchant;
+import core.repositories.MerchantRepo;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration("classpath:spring/business-config.xml")
