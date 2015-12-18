@@ -26,7 +26,7 @@
 					url: '/home',
 						views:{
 							'main@':{
-								templateUrl:'App/Components/Core/Home.html'
+								templateUrl:'App/Components/Core/home.html'
 							}
 						}
 					})

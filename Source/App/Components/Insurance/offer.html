@@ -1,9 +1,19 @@
-<div class="container">
-	<div class="panel panel-default">
-  <div class="panel-body">
-	<h2 class="col-xs-offset-2">{{'OFFER.TITLE' | translate}}</h2>
+<div class="row" id="contentDiv">
 
+    <!-- multistep form -->
+    <div class="col-md-6 col-md-offset-3">
 
-</div>
-</div>
+        <form id="msform">
+            <!-- progressbar -->
+
+            <div ui-view="progresBar"></div>
+            <!-- fieldsets -->
+
+            <fieldset>
+	            <div ui-view="steps"></div>
+	            <div ui-view="progresControls"></div>
+        	</fieldset>
+
+        </form>
+    </div>   
 </div>

@@ -1,0 +1,51 @@
+
+                <h2 class="fs-title">{{'OFFER.SEPT1_TITLE'|translate}}</h2>
+                <h3 class="fs-subtitle">{{'OFFER.FIRST_STEP'|translate}}</h3>
+                <!-- Select regiona -->
+                
+                <div class="row">
+                   <div class ="col-md-12">
+                        <div class="row">
+
+                            <div class="dropdown dropdown-scroll col-md-10">
+                                <div class="input-group">
+                                  <span class="input-group-addon myInputGroup" id="basic-addon3">{{'OFFER.REGION'|translate}}</span>                                  
+                                    <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="ic.toggleRegionsForm()">{{ic.selectedRegion.name}} <span class="caret">
+                                    </span>
+                                    </button>
+
+                                </div>
+                                
+                                <ul ng-hide="ic.hideSelectRegion">
+                                    <li>
+                                        <div class="input-group">
+                                          <input type="text" class="form-control" placeholder="Query" ng-model="query" aria-describedby="basic-addon-search">
+                                          <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon-search"></span>
+                                        </div>
+                                    </li>
+                            
+                                    <li id="countryList">
+                                        <button class="form-control btn btn-default" ng-repeat='item in ic.regions | filter:query' ng-click="ic.selectRegion(item)">
+                                            {{item.name}}
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                  <span class="input-group-addon myInputGroup" id="basic-addon1">{{'OFFER.INSURANCE_DURATION'|translate}}</span>
+                                  <input type="number" class="form-control" aria-describedby="basic-addon1" min="1" value="1">
+                                </div>
+                            </div>
+
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                  <span class="input-group-addon myInputGroup" id="basic-addon2">{{'OFFER.NUMBER_OF_PEOPLE'|translate}}</span>
+                                  <input type="number" class="form-control" aria-describedby="basic-addon2" min="1" ng-model="ic.numberOfPeople">
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>

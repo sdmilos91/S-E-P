@@ -3,10 +3,13 @@
 <head>
 	<title>{{'COMMON.TITLE'|translate}}</title>
 	<link href="assets/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-	<link href="my.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+	
 	<script src="assets/js/jquery/dist/jquery.js"></script>
-	<script src="assets/js/angular/angular.js"></script>
 	<script src="assets/js/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="assets/js/angular/angular.js"></script>
 	<script src="assets/js/angular-ui-router/release/angular-ui-router.js"></script>
 	<script src="assets/js/angular-resource/angular-resource.js"></script>
 	<script src="assets/js/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
@@ -17,15 +20,16 @@
     <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
 
 </head>
-<body>
 
-<div class="container-fluid">
-	<div class="row" ui-view="navbar"></div>
-	<div class="row" ui-view="main"></div>
-	<div class="row" ui-view="footer"></div>
+  <body class="row">
 
+    
+    <div class="row col-md-10 col-md-offset-1" id="container">
+        <div ui-view="navbar" id="menuParent"></div>
+        <div ui-view="main" class="col-md-12"></div>
+        <div ui-view="footer" class="col-md-12"></div>
+    </div>
 
-</div>
 
 
 <script src="app/app.module.js"></script>
@@ -40,6 +44,7 @@
 <script src="app/components/insurance/insurance.module.js"></script>
 <script src="app/components/insurance/insurance.controller.js"></script>
 <script src="app/components/insurance/insurance.route.js"></script>
+<script src="app/components/insurance/offer.filter.js"></script>
 
 </body>
 </html>

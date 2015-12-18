@@ -1,0 +1,62 @@
+
+                <h2 class="fs-title">{{'OFFER.SEPT1_TITLE'|translate}}</h2>
+                <h3 class="fs-subtitle">{{'OFFER.PEOPLE_INFORMATION'|translate}}</h3>
+                <div class="row">
+
+                    <div class="personInfo row" ng-repeat='n in [] | range:ic.numberOfPeople'>
+                      <h4>{{'OFFER.PERSON'|translate}} {{$index+1}}</h4>
+                    </hr>
+                      <div class="col-md-10">
+                            <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-name{{$index}}">{{'OFFER.NAME'|translate}}</span>
+                              <input type="text" class="form-control" aria-describedby="basic-name{{$index}}">
+                            </div>
+                            <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-lastnamename{{$index}}">{{'OFFER.LASTNAME'|translate}}</span>
+                              <input type="text" class="form-control" aria-describedby="basic-lastnamename{{$index}}">
+                            </div>
+                            <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-lasjmmbgtnamename{{$index}}">{{'OFFER.CITIZEN_ID'|translate}}</span>
+                              <input type="text" class="form-control" aria-describedby="basic-jmbg{{$index}}">
+                            </div>
+                            <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-passport{{$index}}">{{'OFFER.PASSPORT_NUMBER'|translate}}</span>
+                              <input type="text" class="form-control" aria-describedby="basic-passport{{$index}}">
+                            </div>
+                            <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-address{{$index}}">{{'OFFER.ADDRESS'|translate}}</span>
+                              <input type="text" class="form-control" aria-describedby="basic-address{{$index}}">
+                            </div>
+                            <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-phone{{$index}}">{{'OFFER.PHONE_NUMBER'|translate}}</span>
+                              <input type="text" class="form-control" aria-describedby="basic-phone{{$index}}">
+                            </div>
+                            <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-sport{{$index}}">{{'OFFER.SPORT'|translate}}</span>
+                              <select aria-describedby="basic-sport{{$index}}" class="form-control">
+                                    <option>Bez sporta</option>
+                                    <option>Odbojka</option>
+                                    <option>Fudbal</option>
+                                    <option>Tenis</option>
+                                    <option>Skijanje</option>
+                              </select>
+                            </div>
+                             <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-sport{{$index}}">{{'OFFER.AGE'|translate}}</span>
+                              <select aria-describedby="basic-sport{{$index}}" class="form-control">
+                                    <option>Manje od 18</option>
+                                    <option>18 - 60</option>
+                                    <option>Preko 60</option>
+                              </select>
+                            </div>
+                             <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-sum{{$index}}">{{'OFFER.AMOUNT'|translate}} (din)</span>
+                              <select aria-describedby="basic-sum{{$index}}" class="form-control">
+                                    <option>do 30 000</option>
+                                    <option>30 000 - 70 000</option>
+                                    <option>Preko 70 000</option>
+                              </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>

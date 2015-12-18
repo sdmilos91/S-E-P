@@ -1,0 +1,396 @@
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    overflow-x: hidden;
+    font-family: "Helvetica";
+    min-height: 400px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+footer{
+    background: rgba(246, 246, 246, 0.87) none repeat scroll 0% 0%;
+}
+
+#container{
+    /*background: rgba(58, 84, 54, 0.2) none repeat scroll 0% 0%;*/
+    background: url("/assets/img/dv1613007.jpg");
+    background-size:100%;
+}
+
+#contentDiv{
+    background: rgba(17, 20, 18, 0.1) none repeat scroll 0% 0%;
+    margin: 0%;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+/*input,
+select{
+    max-width: 280px;
+}*/
+
+label{
+    color: #5A4A4A;
+    vertical-align: middle;
+    float: right;
+}
+
+/*My Menubar*/
+#menuParent{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99;
+}
+
+#myMenu{
+    position: relative;
+    top: 0;
+    width: 85%;
+    z-index: 999999;
+    margin-left: -1%;
+}
+
+#myMenu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+#myMenu li {
+    float: left;
+}
+
+#myMenu li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+#myMenu a:hover:not(.active) {
+    background-color: #111;
+}
+
+#myMenu .active {
+background-color:#4CAF50;
+}
+
+/* HOME */
+
+#homeDiv{
+    text-align: center;
+  }
+
+#introDiv{
+     position: relative;
+    color: white;
+    background-color: rgba(14, 13, 13, 0.11);
+    border-radius: 22px;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+#buyInsuranceDiv{
+ position: relative;
+    color: white;
+    background-color: rgba(45, 43, 117, 0.62);
+    border-radius: 22px;
+    cursor: pointer;
+    margin-bottom: 5%;
+    margin-top: 5%;
+}
+#buyInsuranceDiv a{
+    color: white;
+    text-decoration: none;
+}
+
+#buyInsuranceDiv:hover{
+ background-color: rgba(45, 43, 117, 0.9);
+    
+    cursor: pointer;
+}
+
+#carouselDiv img{
+    width: 100%;
+    max-width: 100%;
+
+}
+
+/*form styles*/
+#msform {
+    width: 100%;
+    margin: 50px auto;
+    text-align: center;
+    position: relative;
+}
+#msform fieldset {
+    background: white;
+    border: 0 none;
+    border-radius: 3px;
+    box-shadow: 0 0 15px 1px rgba(0, 0, 0, 0.4);
+    padding: 20px 30px;
+    
+    box-sizing: border-box;
+    width: 100%;
+    margin: 0 10%;
+    max-height: 800px; 
+    min-height: 400px;
+    position: relative;
+
+    overflow-y: auto; 
+}
+
+/*inputs*/
+.formInputn, #msform textarea{
+    padding: 10px;
+    max-width: 100%;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: montserrat;
+    color: #2C3E50;
+    font-size: 18px;
+}
+/*buttons*/
+#msform .action-button {
+    width: 100px;
+    background: #27AE60;
+    font-weight: bold;
+    color: white;
+    border: 0 none;
+    border-radius: 1px;
+    cursor: pointer;
+    padding: 10px 5px;
+    margin: 10px 5px;
+}
+#msform .action-button:hover, #msform .action-button:focus {
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #27AE60;
+}
+
+#msform .input-group{
+    padding: 3%;
+}
+
+#msform input{
+    text-align: center;
+}
+/*headings*/
+.fs-title {
+    font-size: 15px;
+    text-transform: uppercase;
+    color: #2C3E50;
+    margin-bottom: 10px;
+}
+.fs-subtitle {
+    font-weight: normal;
+    font-size: 13px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Progres bar*/
+
+#progressbar{
+    display: inline;
+    list-style-type: none;
+}
+
+#progressbar li{
+    display: inline;
+}
+
+#progressbar li a{
+    margin-bottom: 10px;
+    border-radius: 20px;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
+#progressbar li a:focus{
+    outline: 0;
+}
+
+.activeStep, .activeStep:focus, .activeStep:active{
+    background-color: #27AE60;
+    border-color: #398439;
+     outline: 0;
+
+};
+
+/*Search regions*/
+.sb_wrapper{
+    margin:0;
+    padding:0;
+    position: absolute;
+    top:80px;
+    left:40px;
+    width:372px;
+}
+.sb_wrapper input[type="text"],
+ul.sb_dropdown{
+    border:1px solid #fff;
+    background: #fafafa; 
+    background: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(#fafafa)); 
+    background: -moz-linear-gradient(top, #f2f2f2, #fafafa);
+    font-size:24px;
+    font-family:"Myriad Pro", "Trebuchet MS", sans-serif;
+    -moz-box-shadow:1px 1px 3px #555;
+    -webkit-box-shadow:1px 1px 3px #555;
+    -box-shadow:1px 1px 3px #555;
+    outline:none;
+    padding:6px 5px 6px 20px;
+    text-shadow:1px 1px 1px #fff;
+    width:295px;
+    float:left;
+    margin:3px 0px;
+}
+ul.sb_dropdown{
+    float:left;
+    list-style:none;
+    width:360px;
+    padding:6px 5px;
+    -moz-border-radius:0px 0px 10px 10px;
+    -webkit-border-bottom-right-radius:10px;
+    -webkit-border-bottom-left-radius:10px;
+    border-bottom-right-radius:10px;
+    border-bottom-left-radius:10px;
+}
+ul.sb_dropdown li{
+    font-size:16px;
+    line-height:32px;
+    height:32px;
+    float:left;
+    width:50%;
+}
+ul.sb_dropdown li input[type="checkbox"]{
+    float:left;
+    margin:10px 4px 0 5px;
+}
+ul.sb_dropdown li.sb_filter{
+    width:348px;
+    border:1px solid #f9f9f9;
+    clear:both;
+    background: #ddd;
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+    color:#444;
+    height:16px;
+    line-height:16px;
+    padding:5px;
+    -moz-box-shadow:0px 0px 2px #777;
+    -webkit-box-shadow:0px 0px 3px #555 inset;
+    -box-shadow:0px 0px 3px #555 inset;
+
+}
+span.sb_up,
+span.sb_down{
+    position:absolute;
+    top:3px;
+    left:0px;
+    width:14px;
+    height:41px;
+    background-color:#f2f2f2;
+    background-position:center center;
+    background-repeat: no-repeat;
+    z-index:10;
+    border:1px solid #fff;
+    -moz-box-shadow:1px 0px 1px #ddd;
+    -webkit-box-shadow:1px 0px 1px #ddd;
+    -box-shadow:1px 0px 1px #ddd;
+    
+}
+span.sb_up{
+    background-image:url(/assets/img/icons/up.png);
+}
+span.sb_down{
+    background-image:url(/assets/img/icons/down.png);
+}
+input.sb_search{
+    background:#f2f2f2 url(/assets/img/icons/search.png) no-repeat center center;
+    height:43px;
+    width:50px;
+    float:left;
+    border:none;
+    margin:3px 0px;
+    border:1px solid #fff;
+    -moz-box-shadow:1px 1px 3px #555;
+    -webkit-box-shadow:1px 1px 3px #555;
+    -box-shadow:1px 1px 3px #555;
+    outline:none;
+    cursor:pointer;
+}
+input.sb_search:hover{
+    background-color:#fff;
+}
+#countryList{
+    max-height: 200px;
+    width: 100%;
+    overflow: auto;
+}
+#countryList button{
+    border: none !important;
+}
+.dropdown-scroll{
+    margin-bottom: 10px;
+    text-align: center;
+}
+.dropdown-scroll input{
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.51);
+}
+
+.dropdown-scroll ul{
+    list-style-type: none;
+    padding: 2%;
+    background-color: #EEE;
+    margin-right: 3%;
+    margin-left: 3%;
+    border-bottom-left-radius: 9px;
+    border-bottom-right-radius: 9px;
+}
+
+.dropdown-scroll .input-group{
+    padding-bottom: 0px !important;
+}
+
+.myInputGroup {
+    min-width:150px;
+    text-align:left;
+}
+
+.personInfo{
+    border: 1px solid rgba(44, 47, 44, 0.27);
+    border-radius: 9px;
+    padding: 3%;
+    background-color: rgba(18, 195, 25, 0.06);
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-bottom: 5%;
+}
+
+#price{
+     background: rgba(245, 245, 245, 0.45);
+    border-radius: 10px;
+    color: #466B56;
+    font-size: 18px;
+    border: 1px solid #BFCED8;
+    margin-bottom: 1%;
+}
+

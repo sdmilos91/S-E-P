@@ -1,24 +1,23 @@
 
 
-<nav class="navbar navbar-inverse">		
+<div id='myMenu'>	
+			
+	<ul>
+		<li><a ng-class="{active:nc.isActive('home')}" ui-sref='main.home'>{{'COMMON.HOME'|translate}}</a></li>
+		<li><a ng-class="{active:nc.isActive('offer')}" ui-sref='main.offer.steps.step1'>{{'COMMON.OFFER'|translate}}</a></li>
+		<li><a ng-class="{active:nc.isActive('about')}" ui-sref='main.about'>{{'COMMON.ABOUT'|translate}}</a></li>
+		
+		<li style="float:right" >
+			<a  href ng-click="nc.setLanguage('en')"><img src="/assets/img/icons/gbr_logo.png" width="22" height="22"/></a>
+		</li>
+		<li style="float:right" >
+			<a  href ng-click="nc.setLanguage('sr-latn')"><img src="/assets/img/icons/serbia_logo.png" width="22" height="22"/></a>
+		</li>
 
-			
-			<ul class="nav navbar-nav navbar-center">
-				<li><a ui-sref='main.home'>{{'COMMON.HOME'|translate}}</a></li>
-				<li><a ui-sref='main.about'>{{'COMMON.ABOUT'|translate}}</a></li>
-				<li><a ui-sref='main.offer'>{{'COMMON.OFFER'|translate}}</a></li>
-			</ul>
-			
+
+
+	</ul>
+
 		
-			<ul class="nav navbar-nav navbar-right">
-   			 	<li class="dropdown">
-					<a  href class="dropdown-toggle" data-toggle="dropdown">{{'JEZIK'|translate}} <span class="caret"></span></a>
-					<ul class="dropdown-menu">
-						<li><a  href ng-click="nc.setLanguage('en')">English</a></li>
-						<li><a  href ng-click="nc.setLanguage('sr-latn')">Srpski</a></li>
-					</ul>
-				</li>
-			
-			</ul>
-		
-	</nav>
+</div>
+
