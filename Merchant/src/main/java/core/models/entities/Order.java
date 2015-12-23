@@ -19,17 +19,11 @@ public class Order implements java.io.Serializable {
 	@Column(name = "order_Id", nullable = false)
 	private int order_Id;
 	
-	@OneToOne(targetEntity=CarInsurance.class)
-	private int carInsurance_Id;
-	
-	@OneToOne(targetEntity=FlatInsurance.class)
-	private int flatInsurance_Id;
-	
 	@OneToOne(targetEntity=Person.class)
 	private String JMBG;
 	
 	@OneToMany
-	private Set<TravelInsurance> travelInsurances;
+	private Set<Policy> policies;
 	
 	@Column(name = "timestamp", nullable = false)
 	private Date timestamp;
@@ -61,21 +55,6 @@ public class Order implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	public int getCarInsurance_Id() {
-		return carInsurance_Id;
-	}
-
-	public void setCarInsurance_Id(int carInsurance_Id) {
-		this.carInsurance_Id = carInsurance_Id;
-	}
-
-	public int getFlatInsurance_Id() {
-		return flatInsurance_Id;
-	}
-
-	public void setFlatInsurance_Id(int flatInsurance_Id) {
-		this.flatInsurance_Id = flatInsurance_Id;
-	}
 
 	public String getJMBG() {
 		return JMBG;
@@ -85,12 +64,12 @@ public class Order implements java.io.Serializable {
 		JMBG = jMBG;
 	}
 
-	public Set<TravelInsurance> getTravelInsurances() {
-		return travelInsurances;
+	public Set<Policy> getPolicies() {
+		return policies;
 	}
 
-	public void setTravelInsurances(Set<TravelInsurance> travelInsurances) {
-		this.travelInsurances = travelInsurances;
+	public void setPolicies(Set<Policy> policies) {
+		this.policies = policies;
 	}
 
 }

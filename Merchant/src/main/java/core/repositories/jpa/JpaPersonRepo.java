@@ -5,20 +5,20 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import core.models.entities.Car;
-import core.repositories.CarRepo;
+import core.models.entities.Person;
+import core.repositories.PersonRepo;
 
 @Repository
-public class JpaCarRepo implements CarRepo {
+public class JpaPersonRepo implements PersonRepo {
 
 	@PersistenceContext
 	private EntityManager em;
-
-	public Car findCar(String chasseId) {
-		return em.find(Car.class, chasseId);
+	
+	public Person findPerson(String JMBG) {
+		return em.find(Person.class, JMBG);
 	}
 
-	public Car createCar(Car data) {
+	public Person createPerson(Person data) {
 		em.persist(data);
 		return data;
 	}

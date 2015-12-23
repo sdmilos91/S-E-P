@@ -13,6 +13,7 @@
                         
     <context:component-scan base-package="core.repositories.jpa"/>
 
+<!--  
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="locations">
     		<list>
@@ -21,12 +22,13 @@
   		</property>
   		<property name="localOverride" value="true"/>
     </bean>
+-->
 
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-        <property name="driverClassName" value="${jdbc.driver}" />
-        <property name="url" value="${jdbc.url}" />
-        <property name="username" value="${jdbc.user}" />
-        <property name="password" value="${jdbc.password}" />
+        <property name="driverClassName" value="net.sourceforge.jtds.jdbc.Driver" />
+        <property name="url" value="jdbc:jtds:sqlserver://localhost:1433/DBTest" />
+        <property name="username" value="sa" />
+        <property name="password" value="salac91" />
     </bean>
     
     <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
@@ -35,13 +37,13 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="false" />
-                <property name="databasePlatform" value="${jdbc.dialect}" />
+                <property name="databasePlatform" value="org.hibernate.dialect.SQLServerDialect" />
             </bean>
         </property>
     
         <property name="jpaProperties">
             <props>
-                <prop key="hibernate.hbm2ddl.auto">validate</prop> 
+                <prop key="hibernate.hbm2ddl.auto">create-drop</prop> 
                 <prop key="hibernate.show_sql">true</prop>
                 <prop key="hibernate.format_sql">true</prop>
                 <prop key="hibernate.hbm2ddl.auto">create</prop>
@@ -54,6 +56,8 @@
         <property name="entityManagerFactory" ref="entityManagerFactory" />
     </bean>
     
-    <tx:annotation-driven transaction-manager="transactionManager" />   
+    <tx:annotation-driven transaction-manager="transactionManager" /> 
+    
+    <context:component-scan base-package="core.services.impl"/>
 	
 </beans>

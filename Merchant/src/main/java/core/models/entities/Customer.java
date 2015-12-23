@@ -2,6 +2,8 @@ package core.models.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
@@ -17,6 +19,12 @@ public class Customer extends Person implements java.io.Serializable {
 	
 	@Column(name = "telephoneNumber", nullable = false)
 	private String telephoneNumber;
+	
+	@OneToOne(targetEntity=Address.class)
+	private String address_Id ;
+	
+	@ManyToMany(mappedBy = "customers")
+	public java.util.Set<Policy> usingPolicies;
 
 	public String getEmail() {
 		return email;
@@ -40,6 +48,22 @@ public class Customer extends Person implements java.io.Serializable {
 
 	public void setTelephoneNumber(String telephoneNumber) {
 		this.telephoneNumber = telephoneNumber;
+	}
+
+	public String getAddress_Id() {
+		return address_Id;
+	}
+
+	public void setAddress_Id(String address_Id) {
+		this.address_Id = address_Id;
+	}
+
+	public java.util.Set<Policy> getUsingPolicies() {
+		return usingPolicies;
+	}
+
+	public void setUsingPolicies(java.util.Set<Policy> usingPolicies) {
+		this.usingPolicies = usingPolicies;
 	}
 	
 }

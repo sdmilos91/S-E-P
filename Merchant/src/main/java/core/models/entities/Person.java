@@ -39,4 +39,5 @@ public class Person implements java.io.Serializable {
 	public void setSurName(String surName) {
 		this.surName = surName;
 	}
-	}
+
+}

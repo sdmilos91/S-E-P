@@ -11,7 +11,7 @@ import javax.persistence.Table;
 public class Address implements java.io.Serializable {
 	
 	@Id 
-	@Column(name = "accident_Id", nullable = false)
+	@Column(name = "address_Id", nullable = false)
 	private String address_Id;
 	
 	@Column(name = "address", nullable = false)
