@@ -27,19 +27,19 @@ public class Policy implements java.io.Serializable {
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "CustomersForPolicy", joinColumns = { @JoinColumn(name = "policy_Id") }, inverseJoinColumns = { @JoinColumn(name = "JMBG") })
-	public java.util.Set<Customer> customers = new HashSet<Customer>();
+	private java.util.Set<Customer> customers = new HashSet<Customer>();
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "RisksForPolicy", joinColumns = { @JoinColumn(name = "policy_Id") }, inverseJoinColumns = { @JoinColumn(name = "risk_Id") })
-	public java.util.Set<Risk> risks = new HashSet<Risk>();
+	private java.util.Set<Risk> risks = new HashSet<Risk>();
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "flat_Id")
-	public Flat flat;
+	private Flat flat;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "vehicle_id")
-	public Vehicle vehicle;
+	private Vehicle vehicle;
 
 	public int getPolicy_Id() {
 		return policy_Id;

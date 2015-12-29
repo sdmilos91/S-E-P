@@ -1,13 +1,19 @@
 package core.models.entities;
 
 import java.util.Date;
+import java.util.HashSet;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @SuppressWarnings("serial")
 @Entity
@@ -33,11 +39,14 @@ public class Risk implements java.io.Serializable {
 	@Column(name = "flag", nullable = false)
 	private boolean flag;
 	
-	@OneToOne(targetEntity=RiskType.class)
-	private int riskType_Id;
+	@JsonIgnore
+	@ManyToOne
+	@JoinColumn(name="riskType_Id")
+	private RiskType riskType;
 	
-	@ManyToMany(mappedBy = "risks")
-	public java.util.Set<Policy> inPolicies;
+	//@JsonIgnore
+	//@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER , mappedBy = "risks")
+	//private java.util.Set<Policy> inPolicies = new HashSet<Policy>();
 
 	public int getRisk_Id() {
 		return risk_Id;
@@ -87,20 +96,22 @@ public class Risk implements java.io.Serializable {
 		this.flag = flag;
 	}
 
-	public int getRiskType_Id() {
-		return riskType_Id;
+	@JsonIgnore
+	public RiskType getRiskType() {
+		return riskType;
 	}
 
-	public void setRiskType_Id(int riskType_Id) {
-		this.riskType_Id = riskType_Id;
+	public void setRiskType(RiskType riskType) {
+		this.riskType = riskType;
 	}
 
-	public java.util.Set<Policy> getInPolicies() {
-		return inPolicies;
-	}
+	//@JsonIgnore
+	//public java.util.Set<Policy> getInPolicies() {
+	//	return inPolicies;
+	//}
 
-	public void setInPolicies(java.util.Set<Policy> inPolicies) {
-		this.inPolicies = inPolicies;
-	}
+	//public void setInPolicies(java.util.Set<Policy> inPolicies) {
+	//	this.inPolicies = inPolicies;
+	//}
 	
 }

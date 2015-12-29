@@ -18,9 +18,9 @@ public class RiskType implements java.io.Serializable {
 	private int riskType_Id;
 	
 	@Column(name = "riskType", nullable = false)
-	private int riskType;
+	private String riskType;
 	
-	@OneToMany
+	@OneToMany(mappedBy="riskType")
 	private Set<Risk> risks;
 
 	public int getRiskType_Id() {
@@ -31,11 +31,11 @@ public class RiskType implements java.io.Serializable {
 		this.riskType_Id = riskType_Id;
 	}
 
-	public int getRiskType() {
+	public String getRiskType() {
 		return riskType;
 	}
 
-	public void setRiskType(int riskType) {
+	public void setRiskType(String riskType) {
 		this.riskType = riskType;
 	}
 
