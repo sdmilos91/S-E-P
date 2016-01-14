@@ -2,13 +2,14 @@ package core.models.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @SuppressWarnings("serial")
 @Entity
-@Table(name = "CUSTOMER")
 public class Customer extends Person implements java.io.Serializable {
 	
 	@Column(name = "email", nullable = true)
@@ -20,9 +21,12 @@ public class Customer extends Person implements java.io.Serializable {
 	@Column(name = "telephoneNumber", nullable = false)
 	private String telephoneNumber;
 	
+	@JsonIgnore
 	@OneToOne(targetEntity=Address.class)
-	private String address_Id ;
+	@JoinColumn(name="address_Id")
+	private Address address ;
 	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "customers")
 	public java.util.Set<Policy> usingPolicies;
 
@@ -50,12 +54,12 @@ public class Customer extends Person implements java.io.Serializable {
 		this.telephoneNumber = telephoneNumber;
 	}
 
-	public String getAddress_Id() {
-		return address_Id;
+	public Address getAddress() {
+		return address;
 	}
 
-	public void setAddress_Id(String address_Id) {
-		this.address_Id = address_Id;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 
 	public java.util.Set<Policy> getUsingPolicies() {

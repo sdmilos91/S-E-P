@@ -30,5 +30,5 @@ public class MerchantResource extends ResourceSupport{
 		 	merchant.setMerchantId(merchantId);
 		 	merchant.setMerchantPassword(merchantPassword);	
 	        return merchant;
-	    }
+	 }
 }

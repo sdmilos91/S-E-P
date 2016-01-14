@@ -73,8 +73,6 @@ private int risk_Id;
 		risk.setRisk_Id(risk_Id);
 		risk.setCoef(coef);
 		risk.setFlag(flag);
-		//risk.setInPolicies(inPolicies);
-		//risk.setRiskType(riskType_Id);
 		risk.setValue(value);
 		risk.setValidFrom(validFrom);
 		risk.setValidTo(validTo);

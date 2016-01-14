@@ -23,6 +23,7 @@ public class MerchantController {
 		this.service = service;
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rest/merchants/{merchantId}", method = RequestMethod.GET)
 	public ResponseEntity<MerchantResource> getMerchant(
 			@PathVariable String merchantId) {
@@ -33,6 +34,7 @@ public class MerchantController {
 		
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rest/merchants", method = RequestMethod.POST)
 	public ResponseEntity<MerchantResource> createMerchant(@RequestBody MerchantResource sentMerchant) {
 		

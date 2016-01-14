@@ -2,12 +2,15 @@ package core.models.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.InheritanceType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
 import javax.persistence.Table;
 
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "PERSON")
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Person implements java.io.Serializable {
 
 	@Id 

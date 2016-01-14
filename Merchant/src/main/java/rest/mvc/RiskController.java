@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
 import core.models.entities.Risk;
 import core.services.RiskService;
@@ -26,6 +27,7 @@ public class RiskController {
 		this.service = service;
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rest/risk/{riskId}", method = RequestMethod.GET)
 	public ResponseEntity<RiskResource> getRisk(
 			@PathVariable int riskId) {
@@ -36,6 +38,7 @@ public class RiskController {
 		
 	}
 	
+	@CrossOrigin
 	@RequestMapping(value="/rest/risks/{riskType}", method = RequestMethod.GET)
 	public ResponseEntity<RiskListResource> getRisks(
 			@PathVariable String riskType) {
