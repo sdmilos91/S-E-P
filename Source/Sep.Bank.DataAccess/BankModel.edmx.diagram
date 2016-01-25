@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9ff770bd71f14ce780fc50a5c929a467" Name="Diagram1">
+        <EntityTypeShape EntityType="BankModel.ACCOUNT" Width="1.5" PointX="0.75" PointY="1.125" />
+        <EntityTypeShape EntityType="BankModel.BANKORDER" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="BankModel.CREDITCARD" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="BankModel.TRANSACTION" Width="1.5" PointX="7.5" PointY="1" />
+        <AssociationConnector Association="BankModel.FK_CREDITCA_RELATIONS_ACCOUNT" />
+        <AssociationConnector Association="BankModel.FK_BANKORDE_RELATIONS_CREDITCA" />
+        <AssociationConnector Association="BankModel.FK_BANKORDE_RELATIONS_TRANSACT" />
+        <AssociationConnector Association="BankModel.FK_TRANSACT_RELATIONS_BANKORDE" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,313 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BankModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ACCOUNT">
+          <Key>
+            <PropertyRef Name="ACCOUNT_ID" />
+          </Key>
+          <Property Name="ACCOUNT_ID" Type="bigint" Nullable="false" />
+          <Property Name="AMMOUNT" Type="money" Nullable="false" />
+          <Property Name="CREATION_DATE" Type="datetime" Nullable="false" />
+          <Property Name="MERCHANT_ID" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="MERCHANT_PASSWORD" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BANKORDER">
+          <Key>
+            <PropertyRef Name="BANKORDER_ID" />
+          </Key>
+          <Property Name="BANKORDER_ID" Type="bigint" Nullable="false" />
+          <Property Name="PAYMENT_ID" Type="bigint" Nullable="false" />
+          <Property Name="PAN" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="BANKORDERTIMESTAMP" Type="datetime" Nullable="false" />
+          <Property Name="IS_ISSUER" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CREDITCARD">
+          <Key>
+            <PropertyRef Name="PAN" />
+          </Key>
+          <Property Name="PAN" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="ACCOUNT_ID" Type="bigint" />
+          <Property Name="SECURITYCODE" Type="char" MaxLength="20" Nullable="false" />
+          <Property Name="CARDHOLDERNAME" Type="char" MaxLength="50" Nullable="false" />
+          <Property Name="DATE" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TRANSACTION">
+          <Key>
+            <PropertyRef Name="PAYMENT_ID" />
+          </Key>
+          <Property Name="PAYMENT_ID" Type="bigint" Nullable="false" />
+          <Property Name="BANKORDER_ID" Type="bigint" />
+          <Property Name="AMOUNT" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TRANSACTIONORDERID" Type="bigint" Nullable="false" />
+          <Property Name="TRANSACTIONTIMESTAMP" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BANKORDE_RELATIONS_CREDITCA">
+          <End Role="CREDITCARD" Type="Self.CREDITCARD" Multiplicity="1" />
+          <End Role="BANKORDER" Type="Self.BANKORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CREDITCARD">
+              <PropertyRef Name="PAN" />
+            </Principal>
+            <Dependent Role="BANKORDER">
+              <PropertyRef Name="PAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANKORDE_RELATIONS_TRANSACT">
+          <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="1" />
+          <End Role="BANKORDER" Type="Self.BANKORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANSACTION">
+              <PropertyRef Name="PAYMENT_ID" />
+            </Principal>
+            <Dependent Role="BANKORDER">
+              <PropertyRef Name="PAYMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CREDITCA_RELATIONS_ACCOUNT">
+          <End Role="ACCOUNT" Type="Self.ACCOUNT" Multiplicity="0..1" />
+          <End Role="CREDITCARD" Type="Self.CREDITCARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="CREDITCARD">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACT_RELATIONS_BANKORDE">
+          <End Role="BANKORDER" Type="Self.BANKORDER" Multiplicity="0..1" />
+          <End Role="TRANSACTION" Type="Self.TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANKORDER">
+              <PropertyRef Name="BANKORDER_ID" />
+            </Principal>
+            <Dependent Role="TRANSACTION">
+              <PropertyRef Name="BANKORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BankModelStoreContainer">
+          <EntitySet Name="ACCOUNT" EntityType="Self.ACCOUNT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BANKORDER" EntityType="Self.BANKORDER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CREDITCARD" EntityType="Self.CREDITCARD" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TRANSACTION" EntityType="Self.TRANSACTION" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BANKORDE_RELATIONS_CREDITCA" Association="Self.FK_BANKORDE_RELATIONS_CREDITCA">
+            <End Role="CREDITCARD" EntitySet="CREDITCARD" />
+            <End Role="BANKORDER" EntitySet="BANKORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANKORDE_RELATIONS_TRANSACT" Association="Self.FK_BANKORDE_RELATIONS_TRANSACT">
+            <End Role="TRANSACTION" EntitySet="TRANSACTION" />
+            <End Role="BANKORDER" EntitySet="BANKORDER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CREDITCA_RELATIONS_ACCOUNT" Association="Self.FK_CREDITCA_RELATIONS_ACCOUNT">
+            <End Role="ACCOUNT" EntitySet="ACCOUNT" />
+            <End Role="CREDITCARD" EntitySet="CREDITCARD" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACT_RELATIONS_BANKORDE" Association="Self.FK_TRANSACT_RELATIONS_BANKORDE">
+            <End Role="BANKORDER" EntitySet="BANKORDER" />
+            <End Role="TRANSACTION" EntitySet="TRANSACTION" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BankModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="BankEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ACCOUNTs" EntityType="BankModel.ACCOUNT" />
+          <EntitySet Name="BANKORDERs" EntityType="BankModel.BANKORDER" />
+          <EntitySet Name="CREDITCARDs" EntityType="BankModel.CREDITCARD" />
+          <EntitySet Name="TRANSACTIONs" EntityType="BankModel.TRANSACTION" />
+          <AssociationSet Name="FK_CREDITCA_RELATIONS_ACCOUNT" Association="BankModel.FK_CREDITCA_RELATIONS_ACCOUNT">
+            <End Role="ACCOUNT" EntitySet="ACCOUNTs" />
+            <End Role="CREDITCARD" EntitySet="CREDITCARDs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANKORDE_RELATIONS_CREDITCA" Association="BankModel.FK_BANKORDE_RELATIONS_CREDITCA">
+            <End Role="CREDITCARD" EntitySet="CREDITCARDs" />
+            <End Role="BANKORDER" EntitySet="BANKORDERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BANKORDE_RELATIONS_TRANSACT" Association="BankModel.FK_BANKORDE_RELATIONS_TRANSACT">
+            <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
+            <End Role="BANKORDER" EntitySet="BANKORDERs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TRANSACT_RELATIONS_BANKORDE" Association="BankModel.FK_TRANSACT_RELATIONS_BANKORDE">
+            <End Role="BANKORDER" EntitySet="BANKORDERs" />
+            <End Role="TRANSACTION" EntitySet="TRANSACTIONs" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ACCOUNT">
+          <Key>
+            <PropertyRef Name="ACCOUNT_ID" />
+          </Key>
+          <Property Name="ACCOUNT_ID" Type="Int64" Nullable="false" />
+          <Property Name="AMMOUNT" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+          <Property Name="CREATION_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MERCHANT_ID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="MERCHANT_PASSWORD" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CREDITCARDs" Relationship="BankModel.FK_CREDITCA_RELATIONS_ACCOUNT" FromRole="ACCOUNT" ToRole="CREDITCARD" />
+        </EntityType>
+        <EntityType Name="BANKORDER">
+          <Key>
+            <PropertyRef Name="BANKORDER_ID" />
+          </Key>
+          <Property Name="BANKORDER_ID" Type="Int64" Nullable="false" />
+          <Property Name="PAYMENT_ID" Type="Int64" Nullable="false" />
+          <Property Name="PAN" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="BANKORDERTIMESTAMP" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IS_ISSUER" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CREDITCARD" Relationship="BankModel.FK_BANKORDE_RELATIONS_CREDITCA" FromRole="BANKORDER" ToRole="CREDITCARD" />
+          <NavigationProperty Name="TRANSACTION" Relationship="BankModel.FK_BANKORDE_RELATIONS_TRANSACT" FromRole="BANKORDER" ToRole="TRANSACTION" />
+          <NavigationProperty Name="TRANSACTIONs" Relationship="BankModel.FK_TRANSACT_RELATIONS_BANKORDE" FromRole="BANKORDER" ToRole="TRANSACTION" />
+        </EntityType>
+        <EntityType Name="CREDITCARD">
+          <Key>
+            <PropertyRef Name="PAN" />
+          </Key>
+          <Property Name="PAN" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="ACCOUNT_ID" Type="Int64" />
+          <Property Name="SECURITYCODE" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="CARDHOLDERNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+          <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ACCOUNT" Relationship="BankModel.FK_CREDITCA_RELATIONS_ACCOUNT" FromRole="CREDITCARD" ToRole="ACCOUNT" />
+          <NavigationProperty Name="BANKORDERs" Relationship="BankModel.FK_BANKORDE_RELATIONS_CREDITCA" FromRole="CREDITCARD" ToRole="BANKORDER" />
+        </EntityType>
+        <EntityType Name="TRANSACTION">
+          <Key>
+            <PropertyRef Name="PAYMENT_ID" />
+          </Key>
+          <Property Name="PAYMENT_ID" Type="Int64" Nullable="false" />
+          <Property Name="BANKORDER_ID" Type="Int64" />
+          <Property Name="AMOUNT" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="TRANSACTIONORDERID" Type="Int64" Nullable="false" />
+          <Property Name="TRANSACTIONTIMESTAMP" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="BANKORDERs" Relationship="BankModel.FK_BANKORDE_RELATIONS_TRANSACT" FromRole="TRANSACTION" ToRole="BANKORDER" />
+          <NavigationProperty Name="BANKORDER" Relationship="BankModel.FK_TRANSACT_RELATIONS_BANKORDE" FromRole="TRANSACTION" ToRole="BANKORDER" />
+        </EntityType>
+        <Association Name="FK_CREDITCA_RELATIONS_ACCOUNT">
+          <End Type="BankModel.ACCOUNT" Role="ACCOUNT" Multiplicity="0..1" />
+          <End Type="BankModel.CREDITCARD" Role="CREDITCARD" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ACCOUNT">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Principal>
+            <Dependent Role="CREDITCARD">
+              <PropertyRef Name="ACCOUNT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANKORDE_RELATIONS_CREDITCA">
+          <End Type="BankModel.CREDITCARD" Role="CREDITCARD" Multiplicity="1" />
+          <End Type="BankModel.BANKORDER" Role="BANKORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CREDITCARD">
+              <PropertyRef Name="PAN" />
+            </Principal>
+            <Dependent Role="BANKORDER">
+              <PropertyRef Name="PAN" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BANKORDE_RELATIONS_TRANSACT">
+          <End Type="BankModel.TRANSACTION" Role="TRANSACTION" Multiplicity="1" />
+          <End Type="BankModel.BANKORDER" Role="BANKORDER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TRANSACTION">
+              <PropertyRef Name="PAYMENT_ID" />
+            </Principal>
+            <Dependent Role="BANKORDER">
+              <PropertyRef Name="PAYMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TRANSACT_RELATIONS_BANKORDE">
+          <End Type="BankModel.BANKORDER" Role="BANKORDER" Multiplicity="0..1" />
+          <End Type="BankModel.TRANSACTION" Role="TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BANKORDER">
+              <PropertyRef Name="BANKORDER_ID" />
+            </Principal>
+            <Dependent Role="TRANSACTION">
+              <PropertyRef Name="BANKORDER_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BankModelStoreContainer" CdmEntityContainer="BankEntities">
+          <EntitySetMapping Name="ACCOUNTs">
+            <EntityTypeMapping TypeName="BankModel.ACCOUNT">
+              <MappingFragment StoreEntitySet="ACCOUNT">
+                <ScalarProperty Name="MERCHANT_PASSWORD" ColumnName="MERCHANT_PASSWORD" />
+                <ScalarProperty Name="MERCHANT_ID" ColumnName="MERCHANT_ID" />
+                <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
+                <ScalarProperty Name="AMMOUNT" ColumnName="AMMOUNT" />
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BANKORDERs">
+            <EntityTypeMapping TypeName="BankModel.BANKORDER">
+              <MappingFragment StoreEntitySet="BANKORDER">
+                <ScalarProperty Name="IS_ISSUER" ColumnName="IS_ISSUER" />
+                <ScalarProperty Name="BANKORDERTIMESTAMP" ColumnName="BANKORDERTIMESTAMP" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="PAYMENT_ID" ColumnName="PAYMENT_ID" />
+                <ScalarProperty Name="BANKORDER_ID" ColumnName="BANKORDER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CREDITCARDs">
+            <EntityTypeMapping TypeName="BankModel.CREDITCARD">
+              <MappingFragment StoreEntitySet="CREDITCARD">
+                <ScalarProperty Name="DATE" ColumnName="DATE" />
+                <ScalarProperty Name="CARDHOLDERNAME" ColumnName="CARDHOLDERNAME" />
+                <ScalarProperty Name="SECURITYCODE" ColumnName="SECURITYCODE" />
+                <ScalarProperty Name="ACCOUNT_ID" ColumnName="ACCOUNT_ID" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TRANSACTIONs">
+            <EntityTypeMapping TypeName="BankModel.TRANSACTION">
+              <MappingFragment StoreEntitySet="TRANSACTION">
+                <ScalarProperty Name="TRANSACTIONTIMESTAMP" ColumnName="TRANSACTIONTIMESTAMP" />
+                <ScalarProperty Name="TRANSACTIONORDERID" ColumnName="TRANSACTIONORDERID" />
+                <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />
+                <ScalarProperty Name="BANKORDER_ID" ColumnName="BANKORDER_ID" />
+                <ScalarProperty Name="PAYMENT_ID" ColumnName="PAYMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
