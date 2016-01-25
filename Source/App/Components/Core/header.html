@@ -1,0 +1,19 @@
+
+
+<div id="header" class="col-md-12">
+        
+    <div class="col-md-1">
+        <img src="/assets/img/bankIcon.png" width="128" height="128" / alt="Bank">
+    </div>
+    <div class="col-md-9">
+        <h1>{{'MAIN.T1'|translate}}</h1>
+        <h3>{{'MAIN.T2'|translate}}</h3>
+    </div>
+   <div class="col-md-2">
+    <a  href ng-click="hc.setLanguage('sr-latn')"><img src="/assets/img/icons/serbia_logo.png" width="32" height="32"/></a>
+    <switch id="enabled" name="enabled" ng-model="hc.englishLan" class="green" ng-change="hc.setLanguage()"></switch>
+    <a  href ng-click="hc.setLanguage('en')"><img src="/assets/img/icons/gbr_logo.png" width="32" height="32"/></a>
+</div>
+    
+</div>
+

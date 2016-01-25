@@ -1,0 +1,73 @@
+html,body{height:100%;}
+
+#container {
+    height:100%;
+}
+
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+    overflow-x: hidden;
+    font-family: "Helvetica";
+    min-height: 100%;
+    
+}
+
+body.row{
+    padding: 0px;
+   
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+ul li{
+  display: inline;
+}
+
+#header{
+    top: 0px;
+    text-align: center;
+    color: white;
+    background-color: #292c2f;
+    position: relative;
+    top: 0px;
+}
+
+#myForm{
+    padding: 2%;
+    -webkit-box-shadow: 13px 21px 24px 8px rgba(0,0,0,0.26);
+    -moz-box-shadow: 13px 21px 24px 8px rgba(0,0,0,0.26);
+    box-shadow: 13px 21px 24px 8px rgba(0,0,0,0.26);
+    background-color: rgba(255, 255, 255, 0.88);
+}
+
+#main{
+    padding: 2%;
+    background-image: url("/assets/img/paymentCover.jpg");
+    background-size:cover;
+    min-height: 83%;
+    
+}
+
+#myFooter{
+    background-color:  rgba(210, 197, 159, 0.58);
+    text-align: center;
+    
+}
+
+#myWell{
+    text-align: center;
+    background-color: #dff0d8;
+    font-size: 17px;
+}
+
+.inputError{
+    border: 1px solid #CE4545;
+}
+
+.inputError:focus{
+    border: 1px solid #CE4545;
+}

@@ -1,0 +1,68 @@
+<div id="myForm">
+    <div class="row">
+        <form role="form" name="bankForm" novalidate>
+            <div class="col-lg-6">
+                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>{{'FORM.REQUIRED_FILED'|translate}}</strong></div>
+                <div class="form-group">
+                    <label for="InputName">{{'FORM.ENTER_PAN'|translate}}</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="pan" id="pan" ng-model="fc.pan" placeholder="{{'FORM.ENTER_PAN'|translate}}" required ng-class="{inputError: bankForm.pan.$invalid && bankForm.$submitted}" autocomplete="off"/>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                    <div ng-show="bankForm.$submitted" class="validation-messages" ng-messages="bankForm.pan.$error" style="color:maroon" role="alert">
+                        <div ng-message="required">{{'FORM.PAN_REQ_MSG'|translate}}</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail">{{'FORM.ENTER_SECURITY_CODE'|translate}}</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="securityCode" name="securityCode" ng-model="fc.securityCode" placeholder="{{'FORM.ENTER_SECURITY_CODE'|translate}}" required ng-class="{inputError: bankForm.securityCode.$invalid && bankForm.$submitted}" autocomplete="off">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                    <div ng-show="bankForm.$submitted" class="validation-messages" ng-messages="bankForm.securityCode.$error" style="color:maroon" role="alert">
+                        <div ng-message="required">{{'FORM.SECURITY_CODE_REQ_MSG'|translate}}</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="InputEmail">{{'FORM.CARD_HOLDER_NAME'|translate}}</label>
+                    <div class="input-group">
+                        <input type="text" class="form-control" id="cardHolderName" name="cardHolder" placeholder="{{'FORM.CARD_HOLDER_NAME'|translate}}" ng-model="fc.cardHolder" required ng-class="{inputError: bankForm.cardHolder.$invalid && bankForm.$submitted}" autocomplete="off">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                    </div>
+                    <div ng-show="bankForm.$submitted" class="validation-messages" ng-messages="bankForm.cardHolder.$error" style="color:maroon" role="alert">
+                        <div ng-message="required">{{'FORM.HOLDER_NAME_REQ_MSG'|translate}}</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                    <label for="InputMessage">{{'FORM.CARD_VALID_DATE'|translate}}</label>
+                    <div class="input-group">
+                        <input type="text" name="cardValidDate" class="form-control" uib-datepicker-popup="{{format}}" ng-model="fc.dt" is-open="fc.popup.opened" datepicker-options="fc.dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-class="{inputError: bankForm.cardValidDate.$invalid}"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="fc.open()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+                    </div>
+                   <div ng-show="bankForm.cardValidDate.$touched" class="validation-messages" ng-messages="bankForm.cardValidDate.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">{{'FORM.CARD_VALID_REQ_MSG'|translate}}</div>
+                  </div>
+                </form>
+                </div>
+                <div class="form-group">
+                  <input type="submit" name="submit" id="submit" value="{{'FORM.CONFIRM'|translate}}" class="btn btn-success">
+                  <button class="btn btn-danger">{{'FORM.CANCEL'|translate}}</button>
+                </div>
+
+           
+                
+            </div>
+        </form>
+        <div class="col-lg-5 col-md-push-1">
+            <div class="col-md-12">
+                 <div class="well" id="myWell">
+                     <p>{{'FORM.WELCOME_TITLE'|translate}} Name Lastname</p>
+                     <p>{{'FORM.WELCOME_MSG'|translate}} 4000 RSD</p>
+                     
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
