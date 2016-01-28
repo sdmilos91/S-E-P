@@ -1,9 +1,9 @@
 <div class="row" id="contentDiv">
 
     <!-- multistep form -->
-    <div class="col-md-6 col-md-offset-3">
+    <div class="col-md-6">
 
-        <form id="msform">
+        <div id="msform">
             <!-- progressbar -->
 
             <div ui-view="progresBar"></div>
@@ -14,6 +14,54 @@
 	            <div ui-view="progresControls"></div>
         	</fieldset>
 
-        </form>
+        </div>
+    </div>
+    <div class="col-md-4" id="price">
+        {{'OFFER.AMOUNT'|translate}}
+        <hr>
+        <table>
+             <tr>
+                <td>
+                    Region: 
+                </td>
+                <td>
+                   <b>{{ic.selectedRegion.coef}} RSD</b>
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    Trajanje osiguranja: 
+                </td>
+                <td>
+                   x<b>{{ic.durationCoef}} </b>
+                </td>
+            </tr>
+            <tr ng-if="ic.sportPrice > 0">
+                 <td>
+                    Sport: 
+                </td>
+                <td>
+                   <b>{{ic.sportPrice}} RSD</b>
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    Broj osoba: 
+                </td>
+                <td>
+                   x<b>{{ic.nopCoef}}</b>
+                </td>
+            </tr>
+             <tr>
+                <td>
+                    Osigurani iznos: 
+                </td>
+                <td>
+                   x<b>{{ic.amountsValue}}</b>
+                </td>
+            </tr>
+        </table>
+        <hr>
+        <p>Total: <b>{{ic.price}} RSD</b></p>
     </div>   
 </div>

@@ -2,5 +2,5 @@
 	"use strict";
 	
 	angular
-		.module('merchantApp.shared', ['merchantApp.i18n']);
+		.module('merchantApp.shared', ['merchantApp.i18n', 'ngMessages']);
 })();

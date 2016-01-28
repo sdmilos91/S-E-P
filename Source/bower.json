@@ -19,6 +19,7 @@
     "bootstrap": "~3.3.6",
     "angular-dynamic-locale": "~0.1.29",
     "angular-translate": "~2.8.1",
-    "angular-i18n": "~1.4.8"
+    "angular-i18n": "~1.4.8",
+    "angular-messages": "~1.4.7"
   }
 }

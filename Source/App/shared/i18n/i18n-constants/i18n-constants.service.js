@@ -48,7 +48,8 @@
 				"AMOUNT_MESSAGE": "Total amount:",
 				"NEXT_BTN": "Next",
 				"PREV_BTN": "Previous",
-				"SUBMIT_BTN": "Submit"
+				"SUBMIT_BTN": "Submit",
+				"EMAIL": "Email"
 
 			},
 
@@ -106,7 +107,9 @@
 				"AMOUNT_MESSAGE": "Ukupan iznos:",
 				"NEXT_BTN": "Sledeći",
 				"PREV_BTN": "Prethodni",
-				"SUBMIT_BTN": "Potvrdi"
+				"SUBMIT_BTN": "Potvrdi",
+				"EMAIL": "Email"
+
 			},
 
 

@@ -4,6 +4,7 @@ body {
     overflow-x: hidden;
     font-family: "Helvetica";
     min-height: 400px;
+    height: 100vh;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -20,6 +21,7 @@ footer{
     /*background: rgba(58, 84, 54, 0.2) none repeat scroll 0% 0%;*/
     background: url("/assets/img/dv1613007.jpg");
     background-size:100%;
+
 }
 
 #contentDiv{
@@ -386,11 +388,14 @@ input.sb_search:hover{
 }
 
 #price{
-     background: rgba(245, 245, 245, 0.45);
+     background: rgba(245, 245, 245, 0.75);
     border-radius: 10px;
     color: #466B56;
     font-size: 18px;
     border: 1px solid #BFCED8;
     margin-bottom: 1%;
+    float: right;
+    text-align: center;
+    margin-top: 8%;
 }
 
