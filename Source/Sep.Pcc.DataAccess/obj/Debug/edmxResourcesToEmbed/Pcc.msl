@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SepPccModelStoreContainer" CdmEntityContainer="SepPccEntities">
+    <EntitySetMapping Name="ACQURIERREQUESTs">
+      <EntityTypeMapping TypeName="SepPccModel.ACQURIERREQUEST">
+        <MappingFragment StoreEntitySet="ACQURIERREQUEST">
+          <ScalarProperty Name="DATE" ColumnName="DATE" />
+          <ScalarProperty Name="CARDHOLDERNAME" ColumnName="CARDHOLDERNAME" />
+          <ScalarProperty Name="SECURIYCODE" ColumnName="SECURIYCODE" />
+          <ScalarProperty Name="ACQURIERORDERID" ColumnName="ACQURIERORDERID" />
+          <ScalarProperty Name="ACQURIERTIMESTAMP" ColumnName="ACQURIERTIMESTAMP" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+          <ScalarProperty Name="ACQURIER_REQUEST_ID" ColumnName="ACQURIER_REQUEST_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BANKs">
+      <EntityTypeMapping TypeName="SepPccModel.BANK">
+        <MappingFragment StoreEntitySet="BANK">
+          <ScalarProperty Name="SERVICEURL" ColumnName="SERVICEURL" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ISSUERRESPONSEs">
+      <EntityTypeMapping TypeName="SepPccModel.ISSUERRESPONSE">
+        <MappingFragment StoreEntitySet="ISSUERRESPONSE">
+          <ScalarProperty Name="ISSUERORDERTIMESTAMP" ColumnName="ISSUERORDERTIMESTAMP" />
+          <ScalarProperty Name="ISSUERORDEID" ColumnName="ISSUERORDEID" />
+          <ScalarProperty Name="ACQURIERTIMESTAMP" ColumnName="ACQURIERTIMESTAMP" />
+          <ScalarProperty Name="PAN" ColumnName="PAN" />
+          <ScalarProperty Name="ACQURIERORDER_ID" ColumnName="ACQURIERORDER_ID" />
+          <ScalarProperty Name="ISSUER_RESPONSE_ID" ColumnName="ISSUER_RESPONSE_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TRANSACTIONs">
+      <EntityTypeMapping TypeName="SepPccModel.TRANSACTION">
+        <MappingFragment StoreEntitySet="TRANSACTION">
+          <ScalarProperty Name="TRANSACTIONTIMESTAMP" ColumnName="TRANSACTIONTIMESTAMP" />
+          <ScalarProperty Name="ISSUER_RESPONSE_ID" ColumnName="ISSUER_RESPONSE_ID" />
+          <ScalarProperty Name="ACQURIER_RQUEST_ID" ColumnName="ACQURIER_RQUEST_ID" />
+          <ScalarProperty Name="TRANSACTIONID" ColumnName="TRANSACTIONID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
