@@ -24,6 +24,7 @@ namespace Sep.Bank.Api.Controllers
         /// <param name="model">Parametri narudzbine</param>
         /// <returns>Poruka o uspesnosti</returns>
         [HttpPost]
+        [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage CreateOrder([FromBody]MerchantRequestModel model)
         {
             try 
@@ -56,13 +57,12 @@ namespace Sep.Bank.Api.Controllers
                     context.SaveChanges();
 
                     string bankWebAppURL = System.Configuration.ConfigurationManager.AppSettings["BankWebApp"];
+
+                    MerchantResponseModel responseModel = new MerchantResponseModel();
+                    responseModel.PaymentID = paymentID.ToString();
+                    responseModel.PaymentURL = string.Format("{0}{1}", bankWebAppURL, paymentID);
                     
-
-                    JObject response = new JObject();
-                    response.Add(new JProperty("PaymentID", paymentID));
-                    response.Add(new JProperty("PaymentURL", string.Format("{0}/PaymentID{1}", bankWebAppURL, paymentID)));
-
-                    return Request.CreateResponse(HttpStatusCode.OK, response);
+                    return Request.CreateResponse(HttpStatusCode.OK, responseModel);
                 }
                 else
                 {
@@ -83,9 +83,10 @@ namespace Sep.Bank.Api.Controllers
         /// <param name="model">Model podataka koji se salje PCC-u</param>
         /// <returns>Odgovor banke kupca koji prosledjuje PCC</returns>
         [HttpPost]
+        [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
         public IHttpActionResult SendOrder([FromBody]BankOrderModel model) 
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 try
                 {
@@ -93,7 +94,7 @@ namespace Sep.Bank.Api.Controllers
                     TRANSACTION transaction = context.TRANSACTIONs.FirstOrDefault(x => x.PAYMENT_ID == model.PaymentID);
                     if (transaction == null)
                     {
-                        return Json(new { Error = true, ErrorMessage = "Transaction didnt exist!" });
+                        return Json(new { Error = true, ErrorMessage = "Transaction didnt exist!", Redirect = true });
                     }
 
                     long last = context.BANKORDERs.Count() > 0 ? context.BANKORDERs.OrderByDescending(x => x.BANKORDERTIMESTAMP).FirstOrDefault().BANKORDER_ID : 0;
@@ -133,7 +134,7 @@ namespace Sep.Bank.Api.Controllers
                         CardValidThru = model.CardValidThru,
                         Amount = transaction.AMOUNT
                     };
-                    
+
                     string pccServiceURL = System.Configuration.ConfigurationManager.AppSettings["PccServiceURl"];
 
                     var modelJson = JsonConvert.SerializeObject(pccModel);
@@ -147,7 +148,7 @@ namespace Sep.Bank.Api.Controllers
                         {
                             PccResponseModel pccRespModel = (PccResponseModel)JsonConvert.DeserializeObject(resultContent, typeof(PccResponseModel));
 
-                            if(!pccRespModel.IsError)
+                            if (!pccRespModel.IsError)
                             {
                                 BankOrderResponseModel bankOrderRespModel = new BankOrderResponseModel
                                 {
@@ -162,16 +163,23 @@ namespace Sep.Bank.Api.Controllers
                             }
                         }
 
-                        return Json(new { IsError = true, MessageError = resultContent });
+                        return Json(new { IsError = true, MessageError = resultContent, Redirect = true });
                     }
                 }
                 catch
                 {
-                    return Json(new { Error = true, ErrorMessage = "Server error!" });
+                    return Json(new { IsError = true, ErrorMessage = "Server error!", Redirect = true });
                 }
             }
+            else
+            {
+                 var errors = ModelState.Select(x => x.Value.Errors)
+                           .Where(y=>y.Count>0)
+                           .ToList();
 
-            return Json(new { Error = true, ErrorMessage = "Invalid model!" });
+                 return Json(new { IsError = true, ErrorMessage = "Invalid model!", Redirect = false, Errors = errors });
+            
+            }
         }
 
         /// <summary>
@@ -180,6 +188,7 @@ namespace Sep.Bank.Api.Controllers
         /// <param name="model">Podaci koje salje banka prodavca, a koje prosledjuje PCC</param>
         /// <returns>Poruka o uspesnosti transakcije</returns>
         [HttpPost]
+        [System.Web.Http.Cors.EnableCors(origins: "*", headers: "*", methods: "*")]
         public HttpResponseMessage CheckOrder([FromBody]PccRequestModel model)
         {
             if (ModelState.IsValid)
