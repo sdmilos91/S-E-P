@@ -32,6 +32,9 @@
 					},
 					'progresControls':{
 						templateUrl: 'app/components/Insurance/offer.progressControls.html'
+					},
+					'insuranceModal':{
+						templateUrl: 'app/components/Insurance/insurance.modal.html'
 					}
 				}
 			}).state('main.offer.steps.step1',{
@@ -54,6 +57,13 @@
 				views: {
 					'steps@main.offer':{
 						templateUrl: 'app/components/Insurance/offer.steps/offer.step3.html',
+					}
+				}
+			}).state('main.offer.steps.step4',{
+				url: '/offerStep4',
+				views: {
+					'steps@main.offer':{
+						templateUrl: 'app/components/Insurance/offer.steps/offer.step4.html',
 					}
 				}
 			});

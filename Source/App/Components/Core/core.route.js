@@ -37,6 +37,22 @@
 								templateUrl:'App/Components/Core/about.html'
 							}
 						}
+					})
+					.state('main.error',{
+					url: '/error',
+						views:{
+							'main@':{
+								templateUrl:'App/Components/Core/error.html'
+							}
+						}
+					})
+					.state('main.success',{
+					url: '/success',
+						views:{
+							'main@':{
+								templateUrl:'App/Components/Core/success.html'
+							}
+						}
 					});
 
 

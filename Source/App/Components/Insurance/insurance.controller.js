@@ -6,9 +6,9 @@
 		.controller('InsuranceController', InsuranceController);
 
 	
-	InsuranceController.$inject = ['$scope', '$location', '$state', 'regions', 'sports', 'ages', 'amounts'];
+	InsuranceController.$inject = ['$scope','$window', '$location', '$state', '$uibModal', 'Insurance', 'regions', 'sports', 'ages', 'amounts'];
 
-	function InsuranceController($scope, $location, $state, regions, sports, ages, amounts){
+	function InsuranceController($scope, $window, $location, $state, $uibModal, Insurance, regions, sports, ages, amounts){
 		var ic = this;
 
 		ic.duration = 1;
@@ -143,6 +143,14 @@
 		//Funkcije za navigaciju
 		$scope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
 		    ic.currentState = to.name;
+		    if(from.name == 'main.offer.steps.step1' && !ic.forms[0].$valid)
+		    {
+				$state.go('main.offer.steps.step1');
+				ic.openDialog('alert');
+		    }else if (to.name != 'main.offer.steps.step1' && from.name == 'main.offer.steps.step2' && !ic.forms[1].$valid) {
+		    	$state.go('main.offer.steps.step2');
+		    	ic.openDialog('alert');
+		    }
 		});
 
 		ic.goBack = function(){
@@ -160,17 +168,14 @@
 
 			//Pomocne funkcije
 			var stepIndex = parseInt(ic.currentState.split('steps.step')[1]);
-			if(ic.forms[stepIndex-1].$valid){
-				
-			
-				if(stepIndex != 'NaN'){
 
-					if(stepIndex < 3)
-						stepIndex = stepIndex  + 1;
+			if(stepIndex != 'NaN'){
 
-					$state.go(ic.currentState.split('step')[0] + 'steps.step' + stepIndex);
+				if(stepIndex < 3)
+					stepIndex = stepIndex  + 1;
 
-				}
+				$state.go(ic.currentState.split('step')[0] + 'steps.step' + stepIndex);
+
 			}
 		};
 
@@ -197,7 +202,40 @@
 			}
 
 			console.log(serviceData);
+   			Insurance.sendInsuranceData({}, serviceData).$promise.then(function (result) {
+   				console.log(result);
+   				if(!result.error){
+   					ic.openDialog('submit', result);
+   				}
+   			});
+   		
+			
 		}
+
+/************************************ MODAL ************************************************/
+ic.openDialog = function (type, result) {
+
+	var templateUrl = 'myModalContent.html';
+	if(type != 'alert')
+	{
+		var templateUrl = 'submitInsuranceModalContent.html';
+	}
+
+    var modalInstance = $uibModal.open({
+      animation: true,
+      templateUrl: templateUrl,
+      controller: 'ModalInstanceCtrl',
+      resolve: {
+        }
+      
+    });
+    modalInstance.result.then(function (response) {
+    	if(response)
+   			$window.location.href = result.paymentURL;
+   		  
+  });
+}
+   
 /******************************* HELPER FUNCTIONS ******************************************/		
 
 		function getPrice(){
@@ -277,3 +315,14 @@
 };
 
 })();
+
+angular.module('merchantApp.insurance').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
+
+  $scope.ok = function () {
+    $uibModalInstance.close(true);
+  };
+
+  $scope.cancel = function () {
+    $uibModalInstance.close(false);
+  };
+});

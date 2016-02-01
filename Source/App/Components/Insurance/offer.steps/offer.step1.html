@@ -54,17 +54,24 @@
 
                                 </div>
 
-                                
+                                <input type="number" min=1 name="durHid" ng-show="false" ng-model="ic.numberOfPeople" required/> 
                                 <ul ng-hide="ic.hideSelectNoP">
                                     <li id="countryList">
                                         <div class="input-group" ng-repeat="age in ic.ages">
                                           <span class="input-group-addon myInputGroup" id="basic-addon2">{{age.value}}</span>
-                                          <input type="number" class="form-control" aria-describedby="basic-addon2" min="0" ng-model="ic.agesInputs[age.risk_Id]" ng-change="ic.countNoP()">
+                                          <input type="number" class="form-control" aria-describedby="basic-addon2" min="0" ng-model="ic.agesInputs[age.risk_Id]" ng-change="ic.countNoP()" name="nop">
                                         </div>
                                     </li>
                                 </ul>
-                                <div ng-if="ic.numberOfPeople < 1" style="color:maroon" role="alert">
-                                  <div>Morate popuniti ovo polje!</div>
+                                <div ng-messages="ic.forms[0].durHid.$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                                  <div ng-message="number">Ovo polje mora biti ceo broj!</div>
+                                  <div ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                                </div>
+                                <div ng-messages="ic.forms[0].nop.$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                                  <div ng-message="number">Ovo polje mora biti ceo broj!</div>
+                                  <div ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
                                 </div>
                             </div>
                            
