@@ -23,7 +23,7 @@
 					})
 
 					.state('main.home',{
-					url: '/home',
+					url: '/home?paymentId',
 						views:{
 							'main@':{
 								templateUrl:'App/Components/Core/form.html',
@@ -32,9 +32,6 @@
 							}
 						}
 					});
-
-
-
 
 	}
 
