@@ -1,4 +1,4 @@
-<div id="myForm">
+<div id="myForm" ng-class="{'loading':fc.isLoad}">
     <div class="row">
         <form role="form" name="bankForm" novalidate>
             <div class="col-lg-6">
@@ -47,7 +47,7 @@
                 </form>
                 </div>
                 <div class="form-group">
-                  <input type="submit" name="submit" id="submit" value="{{'FORM.CONFIRM'|translate}}" class="btn btn-success">
+                  <input type="submit" name="submit" id="submit" value="{{'FORM.CONFIRM'|translate}}" class="btn btn-success" ng-click="fc.clickMe()">
                   <button class="btn btn-danger">{{'FORM.CANCEL'|translate}}</button>
                 </div>
 
@@ -65,4 +65,5 @@
             </div>
         </div>
     </div>
+<div class="modal"></div>
 </div>

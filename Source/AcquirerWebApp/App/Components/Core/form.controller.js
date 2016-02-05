@@ -5,11 +5,11 @@
 		.module('acquirerApp.core')
 		.controller('FormController', FormController);
 
-	FormController.$inject = ['$scope', '$stateParams', '$timeout', 'Form'];
-	function FormController($scope, $stateParams, $timeout, Form) {
+	FormController.$inject = ['$scope','$window', '$stateParams', '$timeout', 'Form'];
+	function FormController($scope, $window, $stateParams, $timeout, Form) {
         
         var fc = this;
-        
+        fc.isLoad = false;
         fc.error = false;
         fc.errorMessage = "";
         PAN : fc.pan = "";
@@ -47,6 +47,7 @@
        
 
         fc.clickMe = function(){
+		 fc.isLoad = true;
             var serviceData = {
             PaymentID : fc.paymentId,
             CardPAN : fc.pan,
@@ -63,10 +64,12 @@
                                     
                         //Zovi servis koji Aleksandar treba implementirati da ti posalje link do success strane
                     }else if(result.redirect){
-                        console.log(result.ErrorMessage);
+						var jsonString = JSON.stringify(result);
+                        console.log(jsonString); 
+                         fc.getRedirectUrl(jsonString);
                     }else{
                         console.log(result.Errors);
-                    }
+                    }					 
                 });
             }
         }
@@ -74,6 +77,7 @@
         fc.getRedirectUrl = function(param){
             Form.sendTransactionResult({}, param).$promise.then(function (resultURL) {
                                 console.log(resultURL);
+								$window.location.href = resultURL.url;
                             },
                             function (error) {
                                 // handle errors here
