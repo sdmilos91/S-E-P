@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30723.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sep.Bank.DataAccess", "Sep.Bank.DataAccess\Sep.Bank.DataAccess.csproj", "{8B410997-2B98-4687-B4CA-D7E1D41F0B22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sep.Bank.Api", "Sep.Bank.Api\Sep.Bank.Api.csproj", "{7B2B62ED-83A0-48EB-ACE7-F846C3B1BDE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8B410997-2B98-4687-B4CA-D7E1D41F0B22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B410997-2B98-4687-B4CA-D7E1D41F0B22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B410997-2B98-4687-B4CA-D7E1D41F0B22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B410997-2B98-4687-B4CA-D7E1D41F0B22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B2B62ED-83A0-48EB-ACE7-F846C3B1BDE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B2B62ED-83A0-48EB-ACE7-F846C3B1BDE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B2B62ED-83A0-48EB-ACE7-F846C3B1BDE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B2B62ED-83A0-48EB-ACE7-F846C3B1BDE8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
