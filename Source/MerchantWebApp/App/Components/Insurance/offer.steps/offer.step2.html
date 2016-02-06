@@ -11,56 +11,58 @@
                                 <span class="input-group-addon myInputGroup"  id="basic-name{{$index}}">{{'OFFER.NAME'|translate}}</span>
                                 <input type="text" class="form-control" name="name_{{$index}}" aria-describedby="basic-name{{$index}}" ng-model="ic.customers[$index].name" required>
                               </div>
-                              <div ng-messages="ic.forms[1]['name_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                              <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['name_' + $index].$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate uneti ime!</div>
                               </div>
                               
                               <div class="input-group">
                                 <span class="input-group-addon myInputGroup" id="basic-lastnamename{{$index}}">{{'OFFER.LASTNAME'|translate}}</span>
                                 <input type="text" class="form-control" name="lastname_{{$index}}" aria-describedby="basic-lastnamename{{$index}}" ng-model="ic.customers[$index].lastname" required>
                               </div>
-                              <div ng-messages="ic.forms[1]['lastname_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                              <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['lastname_' + $index].$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate uneti prezime!</div>
                               </div>
 
                               <div class="input-group">
                                 <span class="input-group-addon myInputGroup" id="basic-lasjmmbgtnamename{{$index}}">{{'OFFER.CITIZEN_ID'|translate}}</span>
-                                <input type="text" class="form-control" name="citizenID_{{$index}}" aria-describedby="basic-jmbg{{$index}}" ng-model="ic.customers[$index].citizenID" required>
+                                <input type="text" class="form-control" name="citizenID_{{$index}}" aria-describedby="basic-jmbg{{$index}}" ng-model="ic.customers[$index].citizenID" ng-pattern="/^[1-9]{1}[0-9]{12}$/" required>
                               </div>
-                              <div ng-messages="ic.forms[1]['citizenID_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                              <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['citizenID_' + $index].$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate uneti JMBG!</div>
+                                  <div ng-message="pattern"> JMBG mora imati 13 cifara!</div>
                               </div>
 
                               <div class="input-group">
                                 <span class="input-group-addon myInputGroup" id="basic-passport{{$index}}">{{'OFFER.PASSPORT_NUMBER'|translate}}</span>
                                 <input type="text" class="form-control" name="passportNumber_{{$index}}" aria-describedby="basic-passport{{$index}}" ng-model="ic.customers[$index].passportNumber" required>
                               </div>
-                              <div ng-messages="ic.forms[1]['passportNumber_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                              <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['passportNumber_' + $index].$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate uneti broj pasoša!</div>
                               </div>
 
                               <div class="input-group">
                                 <span class="input-group-addon myInputGroup" id="basic-address{{$index}}">{{'OFFER.ADDRESS'|translate}}</span>
                                 <input type="text" class="form-control" name="address_{{$index}}" aria-describedby="basic-address{{$index}}" ng-model="ic.customers[$index].address" required>
                               </div>
-                              <div ng-messages="ic.forms[1]['address_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                              <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['address_' + $index].$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate uneti adresu!</div>
                               </div>
 
                               <div class="input-group">
                                 <span class="input-group-addon myInputGroup" id="basic-phone{{$index}}">{{'OFFER.PHONE_NUMBER'|translate}}</span>
                                 <input type="text" class="form-control" name="phone_{{$index}}" aria-describedby="basic-phone{{$index}}" ng-model="ic.customers[$index].phoneNumber" required>
                               </div>
-                              <div ng-messages="ic.forms[1]['phone_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                              <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['phone_' + $index].$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate uneti telefon!</div>
                                 </div>
 
                               <div class="input-group" ng-if="ic.isContractor($index)">
                                 <span class="input-group-addon myInputGroup" id="basic-email{{$index}}">{{'OFFER.EMAIL'|translate}}</span>
-                                <input type="text" class="form-control" name="email_{{$index}}"  aria-describedby="basic-email{{$index}}" ng-model="ic.customers[$index].email" required>
+                                <input type="email" class="form-control" name="email_{{$index}}"  aria-describedby="basic-email{{$index}}" ng-model="ic.customers[$index].email" required>
                               </div>
-                              <div ng-messages="ic.forms[1]['email_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                              <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['email_' + $index].$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate uneti email!</div>
+                                  <div ng-message="email">Morate uneti email u odgovarajućem formatu!</div>
                                 </div>
                               
                              

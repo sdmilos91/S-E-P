@@ -6,19 +6,15 @@
 		.controller('InsuranceController', InsuranceController);
 
 	
-	InsuranceController.$inject = ['$scope','$window', '$location', '$state', '$uibModal', 'Insurance', 'regions', 'sports', 'ages', 'amounts'];
+	InsuranceController.$inject = ['$scope','$window', '$location', '$state', '$uibModal', 'Insurance', 'regions', 'sports', 'ages', 'amounts', 'flatModal', 'notifyModal', 'submitModal', 'carModal'];
 
-	function InsuranceController($scope, $window, $location, $state, $uibModal, Insurance, regions, sports, ages, amounts){
+	function InsuranceController($scope, $window, $location, $state, $uibModal, Insurance, regions, sports, ages, amounts, flatModal, notifyModal, submitModal, carModal){
 		var ic = this;
 
 		ic.duration = 1;
 		ic.durationCoef = 1.0;
-		
-		ic.isActiveStep = function(path){
-			return $location.path().indexOf(path) != -1;
-		}
-
-		//Polja i funckije za godine i broj osoba
+        
+		/******************************* BROJ OSOBA I GODINE *********************************/
 		ic.ages = ages.risks;
 
 		ic.agesInputs = initNopInputs();
@@ -43,7 +39,7 @@
 			ic.refreshPrice();
 		}
 
-		//Polja i funckije za sport
+		/******************************* SPORT *********************************************/
 		ic.hideSelectSports = true;
 		ic.selectedSports = [];
 		ic.sports = sports.risks;
@@ -102,7 +98,7 @@
 		}
 
 
-		//Polja i funckije za region
+		/******************************* REGION *********************************************/
 		ic.regions = regions.risks;
 	    ic.selectedRegion = ic.regions[0];
 
@@ -118,16 +114,16 @@
 			ic.refreshPrice();
 		};
 
-		//Iznos osiguranja
+		/******************************* IZNOS NA KOJI SE OSIGURAVA ***************************/
 		ic.amounts = amounts.risks;
  		ic.amountSelected = ic.amounts[0].risk_Id;
 
- 		//Inicijalizacija niza kupaca
+ 		/******************************* KUPCI ************************************************/
  		ic.customers = new Array();
  		ic.isContractor = function(index){
  			return index == 0;
  		}
- 		ic.forms = new Array();
+ 		ic.forms;
 
 	    ic.price = getPrice();
 
@@ -135,59 +131,46 @@
 			ic.price = getPrice();
 		};
 
-		ic.previousState;
-		ic.nextState;
-		ic.currentState;
-		
-		
-		//Funkcije za navigaciju
-		$scope.$on('$stateChangeSuccess', function(ev, to, toParams, from, fromParams) {
-		    ic.currentState = to.name;
-		    if(from.name == 'main.offer.steps.step1' && !ic.forms[0].$valid)
-		    {
-				$state.go('main.offer.steps.step1');
-				ic.openDialog('alert');
-		    }else if (to.name != 'main.offer.steps.step1' && from.name == 'main.offer.steps.step2' && !ic.forms[1].$valid) {
-		    	$state.go('main.offer.steps.step2');
-		    	ic.openDialog('alert');
-		    }
-		});
+        
+        
+        /************************************* OSIGURANJE STANA ********************************/
+        ic.isFlat = false;
+        ic.openHomeInsuranceModal = function(){
+            flatModal.open(ic.FlatInsurance).then(function(flat){
+                ic.FlatInsurance = flat;
+                if(typeof ic.FlatInsurance != 'undefined'){
+                    ic.isFlat = true;
+                }else{
+                    ic.isFlat = false;
+                }
+            });
+        }
 
-		ic.goBack = function(){
-
-			var stepIndex = parseInt(ic.currentState.split('steps.step')[1]);
-			if(stepIndex != 'NaN'){
-				if(stepIndex > 1)
-					stepIndex = stepIndex -1;
-
-				$state.go(ic.currentState.split('step')[0] + 'steps.step' + stepIndex);
-			}
-		};
-
-		ic.goNext = function(){
-
-			//Pomocne funkcije
-			var stepIndex = parseInt(ic.currentState.split('steps.step')[1]);
-
-			if(stepIndex != 'NaN'){
-
-				if(stepIndex < 3)
-					stepIndex = stepIndex  + 1;
-
-				$state.go(ic.currentState.split('step')[0] + 'steps.step' + stepIndex);
-
-			}
-		};
-
-
+        /************************************* OSIGURANJE AUTA *********************************/
+        ic.isCar = false;
+        ic.openCarInsuranceModal = function(){
+            carModal.open(ic.CarInsurance).then(function(car){
+                ic.CarInsurance = car;
+                if(typeof ic.CarInsurance != 'undefined'){
+                    ic.isCar = true;
+                }else{
+                    ic.isCar = false;
+                }
+            });
+        }
+        /************************************** POTVRDA KUPOVINE ********************************/
+        
 		ic.getServiceData = function(){
-			var risks = new Array;
+			
+            var risks = new Array;
 			risks.push({risk_Id: ic.selectedRegion.risk_Id, value: 1});
-			risks.push({risk_Id: ic.amountSelected.risk_Id, value: 1});
-			for (var i = ic.selectedSports.length - 1; i >= 0; i--) {
+			risks.push({risk_Id: ic.amountSelected, value: 1});
+			
+            for (var i = ic.selectedSports.length - 1; i >= 0; i--) {
 				risks.push({risk_Id: ic.selectedSports[i].risk_Id, value: 1});	
 			}
-			for (var i = 0; i < ic.ages.length; i++) {
+			
+            for (var i = 0; i < ic.ages.length; i++) {
 				var number = ic.agesInputs[ic.ages[i].risk_Id] || 0;
 				if(number > 0){
 					risks.push({risk_Id: ic.ages[i].risk_Id, value: number});
@@ -198,48 +181,36 @@
 				risks: risks,
 				duration: ic.duration,
 				amount: ic.price,
-				customers: ic.customers
-			}
-
-			console.log(serviceData);
+				customers: ic.customers,
+                car: ic.CarInsurance,
+                flat: ic.FlatInsurance
+			};
+            
    			Insurance.sendInsuranceData({}, serviceData).$promise.then(function (result) {
    				console.log(result);
    				if(!result.error){
-   					ic.openDialog('submit', result);
+                    var paymentUrl = result.paymentURL;
+   					submitModal.open().then(function(flag){
+                        if(flag)
+                        {
+                            $window.location.href = paymentUrl;
+                        }
+                    });
    				}
-   			});
+   			}, function(error){
+                $state.go('main.error');
+            });
    		
 			
 		}
 
-/************************************ MODAL ************************************************/
-ic.openDialog = function (type, result) {
-
-	var templateUrl = 'myModalContent.html';
-	if(type != 'alert')
-	{
-		var templateUrl = 'submitInsuranceModalContent.html';
-	}
-
-    var modalInstance = $uibModal.open({
-      animation: true,
-      templateUrl: templateUrl,
-      controller: 'ModalInstanceCtrl',
-      resolve: {
-        }
-      
-    });
-    modalInstance.result.then(function (response) {
-    	if(response)
-   			$window.location.href = result.paymentURL;
-   		  
-  });
-}
    
 /******************************* HELPER FUNCTIONS ******************************************/		
 
 		function getPrice(){
+            
 			var price = ic.selectedRegion.coef;
+            
 			ic.durationCoef = (1 + ic.duration / 10).toFixed(2);
 			price = (1 + ic.duration / 10) * price;
 			
@@ -248,11 +219,17 @@ ic.openDialog = function (type, result) {
 			for (var i = ic.selectedSports.length - 1; i >= 0; i--) {
 				if(ic.selectedSports[i].flag){
 					sportPrice += ic.selectedSports[i].coef;	
-				}
+				}else{
+                    if(i == ic.selectedSports.length - 1)
+                        sportPrice = 1;
+                    sportPrice = (sportPrice * ic.selectedSports[i].coef)
+                }
 			}
+            
 			ic.sportPrice = sportPrice;
 			price = price + sportPrice;
 			
+            
 			//Racunanje cene za broj osoba
 			var numberOfPeoplePrice = new Array();
 			ic.nopCoef = 1;
@@ -315,14 +292,3 @@ ic.openDialog = function (type, result) {
 };
 
 })();
-
-angular.module('merchantApp.insurance').controller('ModalInstanceCtrl', function ($scope, $uibModalInstance) {
-
-  $scope.ok = function () {
-    $uibModalInstance.close(true);
-  };
-
-  $scope.cancel = function () {
-    $uibModalInstance.close(false);
-  };
-});

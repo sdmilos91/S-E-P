@@ -1,0 +1,112 @@
+ <div class="modal-header">
+            <h3 class="modal-title"> Osiguranje automobila!</h3>
+    </div>
+    <form name="cmc.carForm" novalidate>
+         <div class="dropdown dropdown-scroll col-md-10" style="width:100%;margin-top: 2%">
+            <div class="input-group">
+              <span class="input-group-addon myInputGroup" id="basic-addon3">Paket </span>                                  
+                <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="cmc.toggleRisksForm()"> Izabrani paketi <span class="caret">
+                </span>
+                </button>
+
+            </div>
+
+            <ul ng-hide="cmc.hideSelectRisks">
+                <li id="countryList">
+                    <div class="input-group" ng-repeat="risk in cmc.selectedRisks">
+                      <input type="text" class="form-control" value="{{risk.value}}" disabled>
+                      <span class="input-group-btn">
+                        <button class="btn btn-danger" ng-click="cmc.removeSelectedRisk(risk.risk_Id)" type="button"><i class="fa fa-remove"></i></button>
+                      </span>
+                    </div>
+                    <div class="input-group">
+                      <select class="form-control" ng-model="cmc.currentRiskSelected" ng-options="obj.risk_Id as obj.value for obj in cmc.risks | filter:cmc.risksFilter
+                      ">
+                      </select>
+                      <span class="input-group-btn">
+                        <button class="btn btn-success" type="button" ng-click="cmc.addRisk()"><i class="fa fa-plus"></i></button>
+                      </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div ng-if="cmc.selectedRisks.length == 0 && cmc.carForm.$submitted" style="color:maroon;margin-left: 3%;"><p>Morate izabrati rizik!</p></div>
+
+        <div class="modal-body">
+           <div class="input-group">
+            <span class="input-group-addon myInputGroup"  id="basic-area">Marka i tip</span>
+            <input type="text" class="form-control" name="type" aria-describedby="basic-area" ng-model="cmc.carInsurance.CarType" required>
+          </div>
+            <div  ng-show="cmc.carForm.$submitted" ng-messages="cmc.carForm.type.$error" style="color:maroon" role="alert">
+                    <div  ng-show="cmc.carForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                </div>
+        </div>
+        <div class="modal-body">
+           <div class="input-group">
+            <span class="input-group-addon myInputGroup"  id="basic-age">Godište</span>
+            <input type="number" class="form-control" name="age" aria-describedby="basic-age" ng-model="cmc.carInsurance.Age" min="1"  required>
+          </div>
+          <div  ng-show="cmc.carForm.$submitted" ng-messages="cmc.carForm.age.$error" style="color:maroon" role="alert">
+                <div  ng-show="cmc.carForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                <div  ng-show="cmc.carForm.$submitted" ng-message="number">Ovo polje mora biti ceo broj!</div>
+                <div  ng-show="cmc.carForm.$submitted" ng-message="min">Vrednost ovog polja ne sme biti manja od 10!</div>
+                <div  ng-show="cmc.carForm.$submitted" ng-message="min">Vrednost ovog polja ne sme biti veća od 200!</div>
+            </div>
+        </div>
+        <div class="modal-body">
+           <div class="input-group">
+            <span class="input-group-addon myInputGroup"  id="basic-value">Broj tablica</span>
+            <input type="text" class="form-control" name="carNumber" aria-describedby="basic-value" ng-model="cmc.carInsurance.CarIdNumber" required>
+          </div>
+            <div  ng-show="cmc.carForm.$submitted" ng-messages="cmc.carForm.carNumber.$error" style="color:maroon" role="alert">
+                    <div  ng-show="cmc.carForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                </div>
+        </div>
+
+        <br/>
+        <br/>
+        <p style="text-align:center;border-top: solid 1px rgba(99, 107, 110, 0.25);margin: 0 0 10px;padding-top: 1%;">Podaci o vlasniku automobila</p>
+        
+          <div class="modal-body">
+               <div class="input-group">
+                <span class="input-group-addon myInputGroup"  id="basic-area">Ime</span>
+                <input type="text" class="form-control" name="name" aria-describedby="basic-area" ng-model="cmc.carInsurance.Owner.Name" required>
+              </div>
+                <div  ng-show="cmc.carForm.$submitted" ng-messages="cmc.carForm.name.$error" style="color:maroon" role="alert">
+                    <div  ng-show="cmc.carForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                </div>
+            </div>
+            <div class="modal-body">
+               <div class="input-group">
+                <span class="input-group-addon myInputGroup"  id="basic-area">Prezime</span>
+                <input type="text" class="form-control" name="lastname" aria-describedby="basic-area" ng-model="cmc.carInsurance.Owner.Lastname" required>
+              </div>
+                <div  ng-show="cmc.carForm.$submitted" ng-messages="cmc.carForm.lastname.$error" style="color:maroon" role="alert">
+                    <div  ng-show="cmc.carForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                </div>
+            </div>
+            <div class="modal-body">
+               <div class="input-group">
+                <span class="input-group-addon myInputGroup"  id="basic-area">JMBG</span>
+                <input type="text" class="form-control" name="jmbg" aria-describedby="basic-area" ng-model="cmc.carInsurance.Owner.CitizenID" ng-pattern="/^[1-9]{1}[0-9]{12}$/" required>
+              </div>
+                <div  ng-show="cmc.carForm.$submitted" ng-messages="cmc.carForm.jmbg.$error" style="color:maroon" role="alert">
+                    <div  ng-show="cmc.carForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                    <div ng-message="pattern"> JMBG mora imati 13 cifara!</div>
+                </div>
+            </div>
+            <div class="modal-body">
+               <div class="input-group">
+                <span class="input-group-addon myInputGroup"  id="basic-area">Adresa</span>
+                <input type="text" class="form-control" name="address" aria-describedby="basic-area" ng-model="cmc.carInsurance.Owner.Address" required>
+              </div>
+                <div  ng-show="cmc.carForm.$submitted" ng-messages="cmc.carForm.address.$error" style="color:maroon" role="alert">
+                    <div  ng-show="cmc.carForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                </div>
+            </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="submit" ng-click="cmc.ok()">Submit</button>
+            <input ng-show="cmc.hasData" class="btn btn-danger" type="button" ng-click="cmc.remove()" value="Ukloni"/>
+            <button class="btn btn-default" type="button" ng-click="cmc.cancel()">Otkaži</button>
+        </div>
+    </form>
