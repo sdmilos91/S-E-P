@@ -1,0 +1,118 @@
+
+                <h2 class="fs-title">{{'OFFER.SEPT1_TITLE'|translate}}</h2>
+                <h3 class="fs-subtitle">{{'OFFER.FIRST_STEP'|translate}}</h3>
+                <!-- Select regiona -->
+        
+                <div class="row">
+                   <div class ="col-md-12">
+                        <div class="row">
+                           <form name="ic.forms[0]" novalidate>
+                          
+                            <div class="dropdown dropdown-scroll col-md-10">
+                                <div class="input-group">
+                                  <span class="input-group-addon myInputGroup" id="basic-addon3">{{'OFFER.REGION'|translate}}</span>                                  
+                                    <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="ic.toggleRegionsForm()">{{ic.selectedRegion.value}} <span class="caret">
+                                    </span>
+                                    </button>
+
+                                </div>
+                                
+                                <ul ng-hide="ic.hideSelectRegion">
+                                    <li>
+                                        <div class="input-group">
+                                          <input type="text" class="form-control" placeholder="Query" ng-model="query" aria-describedby="basic-addon-search">
+                                          <span class="input-group-addon glyphicon glyphicon-search" id="basic-addon-search"></span>
+                                        </div>
+                                    </li>
+                            
+                                    <li id="countryList">
+                                        <button class="form-control btn btn-default" ng-repeat='item in ic.regions | filter:query' ng-click="ic.selectRegion(item)">
+                                            {{item.value}}
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <div class="col-md-10">
+                                <div class="input-group">
+                                  <span class="input-group-addon myInputGroup" id="basic-addon1">{{'OFFER.INSURANCE_DURATION'|translate}}</span>
+                                   <input type="number" name="duration" ng-model="ic.duration" required aria-describedby="basic-addon1" min="1" class="form-control" ng-change="ic.refreshPrice()"/>
+                                </div>
+      
+                                <div ng-messages="ic.forms[0].duration.$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                                  <div ng-message="number">Ovo polje mora biti ceo broj!</div>
+                                  <div ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                                </div>
+                            </div>     
+                            <div class="dropdown dropdown-scroll col-md-10">
+                                <div class="input-group">
+                                  <span class="input-group-addon myInputGroup" id="basic-addon3">{{'OFFER.NUMBER_OF_PEOPLE'|translate}}</span>                                  
+                                    <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="ic.toggleNoPForm()">{{ic.numberOfPeople}} <span class="caret">
+                                    </span>
+                                    </button>
+
+                                </div>
+
+                                <input type="number" min=1 name="durHid" ng-show="false" ng-model="ic.numberOfPeople" required/> 
+                                <ul ng-hide="ic.hideSelectNoP">
+                                    <li id="countryList">
+                                        <div class="input-group" ng-repeat="age in ic.ages">
+                                          <span class="input-group-addon myInputGroup" id="basic-addon2">{{age.value}}</span>
+                                          <input type="number" class="form-control" aria-describedby="basic-addon2" min="0" ng-model="ic.agesInputs[age.risk_Id]" ng-change="ic.countNoP()" name="nop">
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div ng-messages="ic.forms[0].durHid.$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                                  <div ng-message="number">Ovo polje mora biti ceo broj!</div>
+                                  <div ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                                </div>
+                                <div ng-messages="ic.forms[0].nop.$error" style="color:maroon" role="alert">
+                                  <div ng-message="required">Morate popuniti ovo polje!</div>
+                                  <div ng-message="number">Ovo polje mora biti ceo broj!</div>
+                                  <div ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                                </div>
+                            </div>
+                           
+                            <div class="dropdown dropdown-scroll col-md-10">
+                                <div class="input-group">
+                                  <span class="input-group-addon myInputGroup" id="basic-addon3">Sportovi</span>                                  
+                                    <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="ic.toggleSportsForm()"> Izabrani sportovi <span class="caret">
+                                    </span>
+                                    </button>
+
+                                </div>
+                                
+                                <ul ng-hide="ic.hideSelectSports">
+                                    <li id="countryList">
+                                        <div class="input-group" ng-repeat="sport in ic.selectedSports">
+                                          <input type="text" class="form-control" value="{{sport.value}}" disabled>
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-danger" ng-click="ic.removeSelectedSport(sport.risk_Id)" type="button"><i class="fa fa-remove"></i></button>
+                                          </span>
+                                        </div>
+                                        <div class="input-group">
+                                          <select class="form-control" ng-model="ic.currentSportSelected" ng-options="obj.risk_Id as obj.value for obj in ic.sports | filter:ic.sportsFilter
+                                          ">
+                                          </select>
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-success" type="button" ng-click="ic.addSport()"><i class="fa fa-plus"></i></button>
+                                          </span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-10">                                 
+                              <div class="input-group">
+                              <span class="input-group-addon myInputGroup" id="basic-sum{{$index}}">{{'OFFER.AMOUNT'|translate}} (RSD)</span>
+                              <select class="form-control" ng-model="ic.amountSelected" ng-options="obj.risk_Id as obj.value for obj in ic.amounts
+                                          " ng-change="ic.refreshPrice()">
+                                          </select>
+                            </div>
+                            </div>
+                            </form>
+                        </div>
+                        
+                    </div>
+                </div>

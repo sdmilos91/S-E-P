@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="merchantApp">
+<head>
+	<title>{{'COMMON.TITLE'|translate}}</title>
+	<link href="assets/js/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link href="assets/js/angular-bootstrap/ui-bootstrap-csp.css" rel="stylesheet">
+
+	<link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/favicon.ico">
+	
+	<script src="assets/js/jquery/dist/jquery.js"></script>
+	<script src="assets/js/bootstrap/dist/js/bootstrap.js"></script>
+	<script src="assets/js/angular/angular.js"></script>
+	<script src="assets/js/angular-bootstrap/ui-bootstrap.js"></script>
+	<script src="assets/js/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+	<script src="./assets/js/angular-messages/angular-messages.js"></script>
+	<script src="assets/js/angular-ui-router/release/angular-ui-router.js"></script>
+	<script src="assets/js/angular-resource/angular-resource.js"></script>
+	<script src="assets/js/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+	<script src="assets/js/angular-translate/angular-translate.js"></script>
+
+ <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
+
+</head>
+
+  <body class="row">
+
+    
+    <div class="row col-md-10 col-md-offset-1" id="container" banner>
+        <div ui-view="navbar" id="menuParent"></div>
+        <div ui-view="main" class="col-md-12"></div>
+        <div ui-view="footer" class="col-md-12" id="footer"></div>
+    </div>
+
+
+
+<script src="app/app.module.js"></script>
+<script src="app/Components/Core/core.module.js"></script>
+<script src="app/Components/Core/core.route.js"></script>
+<script src="app/Components/Core/navbar.controller.js"></script>
+<script src="app/shared/shared.module.js"></script>
+<script src="app/shared/i18n/i18n.module.js"></script>
+<script src="app/shared/i18n/i18n.config.js"></script>
+<script src="app/shared/i18n/i18n-constants/i18n-constants.module.js"></script>
+<script src="app/shared/i18n/i18n-constants/i18n-constants.service.js"></script>
+<script src="app/shared/directives/elementHeight.directive.js"></script>
+<script src="app/components/insurance/insurance.module.js"></script>
+<script src="app/components/insurance/insurance.service.js"></script>
+<script src="app/components/insurance/insurance.route.js"></script>
+<script src="app/components/insurance/insurance.controller.js"></script>
+<script src="app/components/insurance/offer.filter.js"></script>
+
+</body>
+</html>

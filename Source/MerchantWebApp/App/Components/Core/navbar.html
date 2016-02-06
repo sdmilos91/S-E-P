@@ -1,0 +1,23 @@
+
+
+<div id='myMenu'>	
+			
+	<ul>
+		<li><a ng-class="{active:nc.isActive('home')}" ui-sref='main.home'>{{'COMMON.HOME'|translate}}</a></li>
+		<li><a ng-class="{active:nc.isActive('offer')}" ui-sref='main.offer.steps.step1'>{{'COMMON.OFFER'|translate}}</a></li>
+		<li><a ng-class="{active:nc.isActive('about')}" ui-sref='main.about'>{{'COMMON.ABOUT'|translate}}</a></li>
+		
+		<li style="float:right" >
+			<a  href ng-click="nc.setLanguage('en')"><img src="/assets/img/icons/gbr_logo.png" width="22" height="22"/></a>
+		</li>
+		<li style="float:right" >
+			<a  href ng-click="nc.setLanguage('sr-latn')"><img src="/assets/img/icons/serbia_logo.png" width="22" height="22"/></a>
+		</li>
+
+
+
+	</ul>
+
+		
+</div>
+
