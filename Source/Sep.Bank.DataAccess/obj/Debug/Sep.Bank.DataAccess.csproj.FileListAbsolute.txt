@@ -17,3 +17,4 @@ C:\Users\Milos\Desktop\SepGIT\AcquirerWS\S-E-P\Source\Sep.Bank.DataAccess\bin\De
 C:\Users\Milos\Desktop\SepGIT\AcquirerWS\S-E-P\Source\Sep.Bank.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Milos\Desktop\SepGIT\AcquirerWS\S-E-P\Source\Sep.Bank.DataAccess\obj\Debug\Sep.Bank.DataAccess.dll
 C:\Users\Milos\Desktop\SepGIT\AcquirerWS\S-E-P\Source\Sep.Bank.DataAccess\obj\Debug\Sep.Bank.DataAccess.pdb
+C:\Users\Milos\Desktop\SepGIT\AcquirerWS\S-E-P\Source\Sep.Bank.DataAccess\obj\Debug\Sep.Bank.DataAccess.csprojResolveAssemblyReference.cache

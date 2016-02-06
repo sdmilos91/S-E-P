@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +8,9 @@ namespace Sep.Bank.Api.Models
 {
     public class MerchantRequestModel
     {
+        [Required]
         public string MerchantID { get; set; }
+
         public string MerchantPassword { get; set; }
         public decimal Amount { get; set; }
         public long MerchantOrderID { get; set; }

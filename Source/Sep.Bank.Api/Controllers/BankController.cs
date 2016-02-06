@@ -94,7 +94,7 @@ namespace Sep.Bank.Api.Controllers
                     TRANSACTION transaction = context.TRANSACTIONs.FirstOrDefault(x => x.PAYMENT_ID == model.PaymentID);
                     if (transaction == null)
                     {
-                        return Json(new { Error = true, ErrorMessage = "Transaction didnt exist!", Redirect = true });
+                        return Json(new { Error = true, ErrorMessage = "Transaction not exist!", Redirect = true });
                     }
 
                     long last = context.BANKORDERs.Count() > 0 ? context.BANKORDERs.OrderByDescending(x => x.BANKORDERTIMESTAMP).FirstOrDefault().BANKORDER_ID : 0;
@@ -143,27 +143,26 @@ namespace Sep.Bank.Api.Controllers
                     {
                         var result = client.PostAsync(pccServiceURL, new StringContent(modelJson, System.Text.Encoding.UTF8, "application/json")).Result;
                         string resultContent = result.Content.ReadAsStringAsync().Result;
+                        BankOrderResponseModel bankOrderRespModel = new BankOrderResponseModel
+                        {
+                            PaymentID = transaction.PAYMENT_ID,
+                            MerchantOrderID = transaction.TRANSACTIONORDERID
 
+                        };
                         if (result.StatusCode == HttpStatusCode.OK)
                         {
                             PccResponseModel pccRespModel = (PccResponseModel)JsonConvert.DeserializeObject(resultContent, typeof(PccResponseModel));
 
                             if (!pccRespModel.IsError)
                             {
-                                BankOrderResponseModel bankOrderRespModel = new BankOrderResponseModel
-                                {
-                                    AcquirerID = pccRespModel.Data.AcquirerID,
-                                    AcquirerTimestamp = pccRespModel.Data.AcquirerTimestamp,
-                                    PaymentID = transaction.PAYMENT_ID,
-                                    MerchantOrderID = transaction.TRANSACTIONORDERID
-
-                                };
-
+                                bankOrderRespModel.AcquirerID = pccRespModel.Data.AcquirerID;
+                                bankOrderRespModel.AcquirerTimestamp = pccRespModel.Data.AcquirerTimestamp;
+                                
                                 return Json(new { IsError = false, Data = bankOrderRespModel });
                             }
                         }
 
-                        return Json(new { IsError = true, MessageError = resultContent, Redirect = true });
+                        return Json(new { IsError = true, MessageError = resultContent, Redirect = true, Data = bankOrderRespModel });
                     }
                 }
                 catch
