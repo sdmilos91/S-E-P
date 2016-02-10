@@ -1,4 +1,14 @@
+<div class="row">
+	<div>
+		<p>Pored putnickog mozete izabrati osiguranje stana i osiguranje automobila</p>
+	</div>
+	<div class="col-md-6 selectedDiv" ng-click="ic.openHomeInsuranceModal()"> 
+		<img ng-hide="ic.isFlat" src="/assets/img/flat.jpg" id="offerPhoto"/>
+        <img ng-show="ic.isFlat" src="/assets/img/flat_checked.jpg" id="offerPhoto"/>
+	</div>
+	<div class="col-md-6 selectedDiv" ng-click="ic.openCarInsuranceModal()">
+		<img  ng-hide="ic.isCar" src="/assets/img/car.jpg" id="offerPhoto"/>
+        <img ng-show="ic.isCar" src="/assets/img/car_checked.jpg" id="offerPhoto"/>
 
-                <h2 class="fs-title">{{'OFFER.STEP3_TITLE'|translate}}</h2>
-                <h3 class="fs-subtitle">{{'OFFER.CONFIRM_MESSAGE'|translate}}</h3>
-                <p>{{'OFFER.AMOUNT_MESSAGE'|translate}} <b>{{ic.price}}</b>RSD</p>
+	</div>
+</div>
