@@ -4,7 +4,9 @@
                 <div class="row">
                    <form name="ic.forms[1]" novalidate>
                       <div class="personInfo row" ng-repeat='n in [] | range:ic.numberOfPeople'>
-                        <h4>{{'OFFER.PERSON'|translate}} {{$index+1}}</h4>
+                        <h4 ng-show="{{$index}} != 0">{{'OFFER.PERSON'|translate}} {{$index+1}}</h4>
+						<h4 ng-show="{{$index}} == 0">{{'OFFER.CONTRACTOR_TITLE'|translate}}</h4>
+                        <p ng-show="{{$index}} == 0">{{'OFFER.CONTRACTOR'|translate}}</p>
                       </hr>
                         <div class="col-md-10">
                               <div class="input-group">
@@ -12,7 +14,7 @@
                                 <input type="text" class="form-control" name="name_{{$index}}" aria-describedby="basic-name{{$index}}" ng-model="ic.customers[$index].name" required>
                               </div>
                               <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['name_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate uneti ime!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.NAME_REQ'|translate}}</div>
                               </div>
                               
                               <div class="input-group">
@@ -20,7 +22,7 @@
                                 <input type="text" class="form-control" name="lastname_{{$index}}" aria-describedby="basic-lastnamename{{$index}}" ng-model="ic.customers[$index].lastname" required>
                               </div>
                               <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['lastname_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate uneti prezime!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.LASTNAME_REQ'|translate}}</div>
                               </div>
 
                               <div class="input-group">
@@ -28,8 +30,8 @@
                                 <input type="text" class="form-control" name="citizenID_{{$index}}" aria-describedby="basic-jmbg{{$index}}" ng-model="ic.customers[$index].citizenID" ng-pattern="/^[1-9]{1}[0-9]{12}$/" required>
                               </div>
                               <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['citizenID_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate uneti JMBG!</div>
-                                  <div ng-message="pattern"> JMBG mora imati 13 cifara!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.CITIZEN_ID_REQ'|translate}}</div>
+                                  <div ng-message="pattern"> {{'ERROR_MSGS.CITIZEN_ID_13'|translate}}</div>
                               </div>
 
                               <div class="input-group">
@@ -37,7 +39,7 @@
                                 <input type="text" class="form-control" name="passportNumber_{{$index}}" aria-describedby="basic-passport{{$index}}" ng-model="ic.customers[$index].passportNumber" required>
                               </div>
                               <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['passportNumber_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate uneti broj pasoša!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.PASSPORT_NUM_REQ'|translate}}</div>
                               </div>
 
                               <div class="input-group">
@@ -45,7 +47,7 @@
                                 <input type="text" class="form-control" name="address_{{$index}}" aria-describedby="basic-address{{$index}}" ng-model="ic.customers[$index].address" required>
                               </div>
                               <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['address_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate uneti adresu!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.ADDRESS_REQ'|translate}}</div>
                               </div>
 
                               <div class="input-group">
@@ -53,7 +55,7 @@
                                 <input type="text" class="form-control" name="phone_{{$index}}" aria-describedby="basic-phone{{$index}}" ng-model="ic.customers[$index].phoneNumber" required>
                               </div>
                               <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['phone_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate uneti telefon!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.PHONE_REQ'|translate}}</div>
                                 </div>
 
                               <div class="input-group" ng-if="ic.isContractor($index)">
@@ -61,8 +63,8 @@
                                 <input type="email" class="form-control" name="email_{{$index}}"  aria-describedby="basic-email{{$index}}" ng-model="ic.customers[$index].email" required>
                               </div>
                               <div ng-show="ic.forms[1].$submitted" ng-messages="ic.forms[1]['email_' + $index].$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate uneti email!</div>
-                                  <div ng-message="email">Morate uneti email u odgovarajućem formatu!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.EMAIL_REQ'|translate}}</div>
+                                  <div ng-message="email">{{'ERROR_MSGS.EMAIL_FORMAT'|translate}}</div>
                                 </div>
                               
                              

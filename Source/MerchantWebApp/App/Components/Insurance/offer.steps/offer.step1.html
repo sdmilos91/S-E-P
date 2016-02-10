@@ -40,9 +40,9 @@
                                 </div>
       
                                 <div ng-messages="ic.forms[0].duration.$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
-                                  <div ng-message="number">Ovo polje mora biti ceo broj!</div>
-                                  <div ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.REQUIRED_MSG'|translate}}</div>
+                                  <div ng-message="number">{{'ERROR_MSGS.NUMBER_ERR'|translate}}</div>
+                                  <div ng-message="min">{{'ERROR_MSGS.MIN_NUMBER_ERR'|translate}} 1!</div>
                                 </div>
                             </div>     
                             <div class="dropdown dropdown-scroll col-md-10">
@@ -64,21 +64,21 @@
                                     </li>
                                 </ul>
                                 <div ng-messages="ic.forms[0].durHid.$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
-                                  <div ng-message="number">Ovo polje mora biti ceo broj!</div>
-                                  <div ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.REQUIRED_MSG'|translate}}</div>
+                                  <div ng-message="number">{{'ERROR_MSGS.NUMBER_ERR'|translate}}</div>
+                                  <div ng-message="min">{{'ERROR_MSGS.MIN_NUMBER_ERR'|translate}} 1!</div>
                                 </div>
                                 <div ng-messages="ic.forms[0].nop.$error" style="color:maroon" role="alert">
-                                  <div ng-message="required">Morate popuniti ovo polje!</div>
-                                  <div ng-message="number">Ovo polje mora biti ceo broj!</div>
-                                  <div ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                                  <div ng-message="required">{{'ERROR_MSGS.REQUIRED_MSG'|translate}}</div>
+                                  <div ng-message="number">{{'ERROR_MSGS.NUMBER_ERR'|translate}}</div>
+                                  <div ng-message="min">{{'ERROR_MSGS.MIN_NUMBER_ERR'|translate}} 1!</div>
                                 </div>
                             </div>
                            
                             <div class="dropdown dropdown-scroll col-md-10">
                                 <div class="input-group">
-                                  <span class="input-group-addon myInputGroup" id="basic-addon3">Sportovi</span>                                  
-                                    <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="ic.toggleSportsForm()"> Izabrani sportovi <span class="caret">
+                                  <span class="input-group-addon myInputGroup" id="basic-addon3">{{'OFFER.SPORT'|translate}}</span>                                  
+                                    <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="ic.toggleSportsForm()"> {{'OFFER.SELECTED_SPORTS'|translate}} <span class="caret">
                                     </span>
                                     </button>
 
