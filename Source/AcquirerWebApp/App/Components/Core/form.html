@@ -16,7 +16,7 @@
                 <div class="form-group">
                     <label for="InputEmail">{{'FORM.ENTER_SECURITY_CODE'|translate}}</label>
                     <div class="input-group">
-                        <input type="text" class="form-control" id="securityCode" name="securityCode" ng-model="fc.securityCode" placeholder="{{'FORM.ENTER_SECURITY_CODE'|translate}}" required ng-class="{inputError: bankForm.securityCode.$invalid && bankForm.$submitted}" autocomplete="off">
+                        <input type="password" class="form-control" id="securityCode" name="securityCode" ng-model="fc.securityCode" placeholder="{{'FORM.ENTER_SECURITY_CODE'|translate}}" required ng-class="{inputError: bankForm.securityCode.$invalid && bankForm.$submitted}" autocomplete="off">
                         <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                     </div>
                     <div ng-show="bankForm.$submitted" class="validation-messages" ng-messages="bankForm.securityCode.$error" style="color:maroon" role="alert">
@@ -55,15 +55,6 @@
                 
             </div>
         </form>
-        <div class="col-lg-5 col-md-push-1">
-            <div class="col-md-12">
-                 <div class="well" id="myWell">
-                     <p>{{'FORM.WELCOME_TITLE'|translate}} Name Lastname</p>
-                     <p>{{'FORM.WELCOME_MSG'|translate}} 4000 RSD</p>
-                     
-                </div>
-            </div>
-        </div>
     </div>
 <div class="modal"></div>
 </div>

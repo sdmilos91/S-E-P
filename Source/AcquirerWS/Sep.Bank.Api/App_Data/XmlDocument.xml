@@ -403,21 +403,21 @@
             <param name="model">Parametri narudzbine</param>
             <returns>Poruka o uspesnosti</returns>
         </member>
-        <member name="M:Sep.Bank.Api.Controllers.BankController.SendOrder(Sep.Bank.Api.Models.BankOrderModel)">
-            <summary>
-            Slanje podataka PCC servisu za kako bi prosledio potrebne podatke banki kupca
-            </summary>
-            <param name="model">Model podataka koji se salje PCC-u</param>
-            <returns>Odgovor banke kupca koji prosledjuje PCC</returns>
-        </member>
-        <member name="M:Sep.Bank.Api.Controllers.BankController.CheckOrder(Sep.Bank.Api.Models.PccRequestModel)">
+        <member name="M:Sep.Bank.Api.Controllers.IssuerController.CheckOrder(Sep.Bank.Api.Models.PccRequestModel)">
             <summary>
             Provera podataka koje je prosledio PCC radi provere transakcije (Kada se banka ponasa kao banka kupca)
             </summary>
             <param name="model">Podaci koje salje banka prodavca, a koje prosledjuje PCC</param>
             <returns>Poruka o uspesnosti transakcije</returns>
         </member>
-        <member name="M:Sep.Bank.Api.Controllers.BankController.GenerateTenDigitNumber(System.Decimal)">
+        <member name="M:Sep.Bank.Api.Controllers.PccController.SendOrder(Sep.Bank.Api.Models.BankOrderModel)">
+            <summary>
+            Slanje podataka PCC servisu za kako bi prosledio potrebne podatke banki kupca
+            </summary>
+            <param name="model">Model podataka koji se salje PCC-u</param>
+            <returns>Odgovor banke kupca koji prosledjuje PCC</returns>
+        </member>
+        <member name="M:Sep.Bank.Api.Helpers.GenerateNumber.GenerateTenDigitNumber(System.Decimal)">
             <summary>
             Generisanje desetocifrenog broja
             </summary>

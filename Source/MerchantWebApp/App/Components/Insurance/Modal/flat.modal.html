@@ -4,45 +4,47 @@
         <form name="fmc.flatForm" novalidate>
             <div class="modal-body">
                <div class="input-group">
-                <span class="input-group-addon myInputGroup"  id="basic-area">Povrsina</span>
+                <span class="input-group-addon myInputGroup"  id="basic-area">{{'OFFER.AREA'|translate}}</span>
                 <input type="number" class="form-control" name="area" aria-describedby="basic-area" ng-model="fmc.flatInsurance.Area" min="10" max="200" required>
                 <span class="input-group-addon myInputGroup"  id="basic-area">m2</span>
               </div>
                 <div  ng-show="fmc.flatForm.$submitted" ng-messages="fmc.flatForm.area.$error" style="color:maroon" role="alert">
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="number">Ovo polje mora biti ceo broj!</div>
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="min">Vrednost ovog polja ne sme biti manja od 10!</div>
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="min">Vrednost ovog polja ne sme biti veća od 200!</div>
+                    <div ng-message="required">{{'ERROR_MSGS.REQUIRED_MSG'|translate}}</div>
+                <div ng-message="number">{{'ERROR_MSGS.NUMBER_ERR'|translate}}</div>
+                 <div ng-message="min">{{'ERROR_MSGS.MIN_NUMBER_ERR'|translate}} 10!</div>
+                <div  ng-message="max">{{'ERROR_MSGS.MAX_NUMBER_ERR'|translate}} 200!</div>
                 </div>
             </div>
             <div class="modal-body">
                 <div class="input-group">
-                <span class="input-group-addon myInputGroup"  id="basic-age">Starost</span>
-                <input type="number" class="form-control" name="age" aria-describedby="basic-age" ng-model="fmc.flatInsurance.Age" min="1" required>
-                <span class="input-group-addon myInputGroup"  id="basic-age">Godina</span>
+                <span class="input-group-addon myInputGroup"  id="basic-age">{{'OFFER.AGE'|translate}}</span>
+                <input type="number" class="form-control" name="age" aria-describedby="basic-age" ng-model="fmc.flatInsurance.Age" min="1" max="100" required>
+                <span class="input-group-addon myInputGroup"  id="basic-age">{{'OFFER.YEARS'|translate}}</span>
                 </div>
                 <div  ng-show="fmc.flatForm.$submitted" ng-messages="fmc.flatForm.age.$error" style="color:maroon" role="alert">
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="number">Ovo polje mora biti ceo broj!</div>
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                    <div ng-message="required">{{'ERROR_MSGS.REQUIRED_MSG'|translate}}</div>
+                <div ng-message="number">{{'ERROR_MSGS.NUMBER_ERR'|translate}}</div>
+                 <div ng-message="min">{{'ERROR_MSGS.MIN_NUMBER_ERR'|translate}} 1!</div>
+				 <div  ng-message="max">{{'ERROR_MSGS.MAX_NUMBER_ERR'|translate}} 100!</div>
                 </div>
             </div>
             <div class="modal-body">
                <div class="input-group">
-                <span class="input-group-addon myInputGroup"  id="basic-value">Procenjena vrednost</span>
-                <input type="text" class="form-control" name="value" aria-describedby="basic-value" ng-model="fmc.flatInsurance.Value" min="1" required>
+                <span class="input-group-addon myInputGroup"  id="basic-value">{{'OFFER.ESTIMATED_VALUE'|translate}}</span>
+                <input type="text" class="form-control" name="value" aria-describedby="basic-value" ng-model="fmc.flatInsurance.Value" min="1" max="100000" required>
                 <span class="input-group-addon myInputGroup"  id="basic-value">RSD</span>
               </div>
                 <div  ng-show="fmc.flatForm.$submitted" ng-messages="fmc.flatForm.value.$error" style="color:maroon" role="alert">
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="number">Ovo polje mora biti ceo broj!</div>
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="min">Vrednost ovog polja ne sme biti manja od 1!</div>
+                    <div ng-message="required">{{'ERROR_MSGS.REQUIRED_MSG'|translate}}</div>
+                <div ng-message="number">{{'ERROR_MSGS.NUMBER_ERR'|translate}}</div>
+                 <div ng-message="min">{{'ERROR_MSGS.MIN_NUMBER_ERR'|translate}} 1!</div>
+				 <div  ng-message="max">{{'ERROR_MSGS.MAX_NUMBER_ERR'|translate}} 100 000!</div>
                 </div>
             </div>
              <div class="dropdown dropdown-scroll col-md-10" style="width:100%;margin-top: 2%">
                 <div class="input-group">
-                  <span class="input-group-addon myInputGroup" id="basic-addon3">Rizici</span>                                  
-                    <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="fmc.toggleRisksForm()"> Izabrani rizici <span class="caret">
+                  <span class="input-group-addon myInputGroup" id="basic-addon3">{{'OFFER.RISKS'|translate}}</span>                                  
+                    <button class="btn btn-default form-control" type="button" aria-describedby="basic-addon3" ng-click="fmc.toggleRisksForm()"> {{'OFFER.SELECTED_RISKS'|translate}} <span class="caret">
                     </span>
                     </button>
 
@@ -67,51 +69,51 @@
                     </li>
                 </ul>
             </div>
-            <div ng-if="fmc.selectedRisks.length == 0 && fmc.flatForm.$submitted" style="color:maroon;margin-left: 3%;"><p>Morate izabrati rizik!</p></div>
+            <div ng-if="fmc.selectedRisks.length == 0 && fmc.flatForm.$submitted" style="color:maroon;margin-left: 3%;"><p>{{'ERROR_MSGS.FLAT_RISK_REQ'|translate}}</p></div>
             <br/>
             <br/>
-            <p style="text-align:center;border-top: solid 1px rgba(99, 107, 110, 0.25);margin: 0 0 10px;padding-top: 1%;">Podaci o vlasniku stana</p>
+            <p style="text-align:center;border-top: solid 1px rgba(99, 107, 110, 0.25);margin: 0 0 10px;padding-top: 1%;">{{'OFFER.FLAT_OWNER_INFORMATION'|translate}}</p>
 
             <div class="modal-body">
                <div class="input-group">
-                <span class="input-group-addon myInputGroup"  id="basic-area">Ime</span>
+                <span class="input-group-addon myInputGroup"  id="basic-area">{{'OFFER.NAME'|translate}}</span>
                 <input type="text" class="form-control" name="name" aria-describedby="basic-area" ng-model="fmc.flatInsurance.Owner.Name" required>
               </div>
                 <div  ng-show="fmc.flatForm.$submitted" ng-messages="fmc.flatForm.name.$error" style="color:maroon" role="alert">
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">{{'ERROR_MSGS.NAME_REQ'|translate}}</div>
                 </div>
             </div>
             <div class="modal-body">
                <div class="input-group">
-                <span class="input-group-addon myInputGroup"  id="basic-area">Prezime</span>
+                <span class="input-group-addon myInputGroup"  id="basic-area">{{'OFFER.LASTNAME'|translate}}</span>
                 <input type="text" class="form-control" name="lastname" aria-describedby="basic-area" ng-model="fmc.flatInsurance.Owner.Lastname" required>
               </div>
                 <div  ng-show="fmc.flatForm.$submitted" ng-messages="fmc.flatForm.lastname.$error" style="color:maroon" role="alert">
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">{{'ERROR_MSGS.LASTNAME_REQ'|translate}}</div>
                 </div>
             </div>
             <div class="modal-body">
                <div class="input-group">
-                <span class="input-group-addon myInputGroup"  id="basic-area">JMBG</span>
+                <span class="input-group-addon myInputGroup"  id="basic-area">{{'OFFER.CITIZEN_ID'|translate}}</span>
                 <input type="text" class="form-control" name="jmbg" aria-describedby="basic-area" ng-model="fmc.flatInsurance.Owner.CitizenID" ng-pattern="/^[1-9]{1}[0-9]{12}$/" required>
               </div>
-                <div  ng-show="fmc.flatForm.$submitted" ng-messages="fmc.flatForm.jmbg.$error" style="color:maroon" role="alert">
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
-                    <div ng-message="pattern"> JMBG mora imati 13 cifara!</div>
+                <div  ng-if="fmc.flatForm.jmbg.$dirty" ng-messages="fmc.flatForm.jmbg.$error" style="color:maroon" role="alert">
+                    <div ng-message="required">{{'ERROR_MSGS.CITIZEN_ID_REQ'|translate}}</div>
+                    <div ng-message="pattern"> {{'ERROR_MSGS.CITIZEN_ID_13'|translate}}</div>
                 </div>
             </div>
             <div class="modal-body">
                <div class="input-group">
-                <span class="input-group-addon myInputGroup"  id="basic-area">Adresa</span>
+                <span class="input-group-addon myInputGroup"  id="basic-area">{{'OFFER.ADDRESS'|translate}}</span>
                 <input type="text" class="form-control" name="address" aria-describedby="basic-area" ng-model="fmc.flatInsurance.Owner.Address" required>
               </div>
                 <div  ng-show="fmc.flatForm.$submitted" ng-messages="fmc.flatForm.address.$error" style="color:maroon" role="alert">
-                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">Morate popuniti ovo polje!</div>
+                    <div  ng-show="fmc.flatForm.$submitted" ng-message="required">{{'ERROR_MSGS.ADDRESS_REQ'|translate}}</div>
                 </div>
             </div>
             <div class="modal-footer">
-                <input class="btn btn-primary" type="submit" ng-click="fmc.ok()" value="Potvrdi"/>
+                <input class="btn btn-primary" type="submit" ng-click="fmc.ok()" value="{{'OFFER.SUBMIT_BTN'|translate}}"/>
                 <input ng-show="fmc.hasData" class="btn btn-danger" type="button" ng-click="fmc.remove()" value="Ukloni"/>
-                <button class="btn btn-default" type="button" ng-click="fmc.cancel()">Otkaži</button>
+                <button class="btn btn-default" type="button" ng-click="fmc.cancel()">{{'OFFER.CANCEL_BTN'|translate}}</button>
             </div>
         </form>

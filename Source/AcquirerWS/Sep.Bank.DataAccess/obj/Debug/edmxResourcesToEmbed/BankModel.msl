@@ -3,7 +3,7 @@
   <EntityContainerMapping StorageEntityContainer="BankModelStoreContainer" CdmEntityContainer="BankEntities">
     <EntitySetMapping Name="ACCOUNTs">
       <EntityTypeMapping TypeName="BankModel.ACCOUNT">
-        <MappingFragment StoreEntitySet="ACCOUNT">
+        <MappingFragment StoreEntitySet="ACCOUNTs">
           <ScalarProperty Name="MERCHANT_PASSWORD" ColumnName="MERCHANT_PASSWORD" />
           <ScalarProperty Name="MERCHANT_ID" ColumnName="MERCHANT_ID" />
           <ScalarProperty Name="CREATION_DATE" ColumnName="CREATION_DATE" />
@@ -14,7 +14,7 @@
     </EntitySetMapping>
     <EntitySetMapping Name="BANKORDERs">
       <EntityTypeMapping TypeName="BankModel.BANKORDER">
-        <MappingFragment StoreEntitySet="BANKORDER">
+        <MappingFragment StoreEntitySet="BANKORDERs">
           <ScalarProperty Name="IS_ISSUER" ColumnName="IS_ISSUER" />
           <ScalarProperty Name="BANKORDERTIMESTAMP" ColumnName="BANKORDERTIMESTAMP" />
           <ScalarProperty Name="PAN" ColumnName="PAN" />
@@ -25,7 +25,7 @@
     </EntitySetMapping>
     <EntitySetMapping Name="CREDITCARDs">
       <EntityTypeMapping TypeName="BankModel.CREDITCARD">
-        <MappingFragment StoreEntitySet="CREDITCARD">
+        <MappingFragment StoreEntitySet="CREDITCARDs">
           <ScalarProperty Name="DATE" ColumnName="DATE" />
           <ScalarProperty Name="CARDHOLDERNAME" ColumnName="CARDHOLDERNAME" />
           <ScalarProperty Name="SECURITYCODE" ColumnName="SECURITYCODE" />
@@ -36,7 +36,7 @@
     </EntitySetMapping>
     <EntitySetMapping Name="TRANSACTIONs">
       <EntityTypeMapping TypeName="BankModel.TRANSACTION">
-        <MappingFragment StoreEntitySet="TRANSACTION">
+        <MappingFragment StoreEntitySet="TRANSACTIONs">
           <ScalarProperty Name="TRANSACTIONTIMESTAMP" ColumnName="TRANSACTIONTIMESTAMP" />
           <ScalarProperty Name="TRANSACTIONORDERID" ColumnName="TRANSACTIONORDERID" />
           <ScalarProperty Name="AMOUNT" ColumnName="AMOUNT" />

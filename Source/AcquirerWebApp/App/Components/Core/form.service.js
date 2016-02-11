@@ -8,7 +8,7 @@
 	Form.$inject = ['$resource'];
 	function Form($resource) {
 		
-		var formService = $resource("http://192.168.1.4:58643/api/Bank/SendOrder", {}, 
+		var formService = $resource("http://localhost:58643/api/Pcc/", {}, 
 		{
         	sendOrder: 
         	{

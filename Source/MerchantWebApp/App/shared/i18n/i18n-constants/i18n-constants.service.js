@@ -30,7 +30,7 @@
 				"SEPT1_TITLE": "FILL OUT THE FORM FOR THE PURCHASE OF INSURANCE",
 				"FIRST_STEP": "First step",
 				"REGION": "Region",
-				"INSURANCE_DURATION": "Duration",
+				"INSURANCE_DURATION": "Duration ",
 				"NUMBER_OF_PEOPLE": "Number of people",
 				"PERSON":"Person",
 				"PEOPLE_INFORMATION": "Information about customers",
@@ -53,14 +53,29 @@
 				"EMAIL": "Email",
                 "CAR_FLAT_TITLE": "You can choose FLAT insurance and CAR insurance",
                 "CONTRACTOR" : "This person is contractor. Please enter contractor email.",
-                "CONTRACTOR_TITLE" : "CONTRACTOR"
-
+                "CONTRACTOR_TITLE" : "CONTRACTOR",
+                "CANCEL_BTN": "Cancel",
+                "PACKAGE": "Package",
+                "SELECTED_PACKAGE": "Selected package",
+                "CAR_AGE": "Godište",
+                "PLATE_NUMBER": "Plate number",
+                "BRAND_TYPE" : "Brand and type",
+                "CAR_OWNER_INFORMATION" : "Information about car owner",
+                "AREA": "Area",
+                "RISKS": "Risks",
+                "SELECTED_RISKS": "Selected risks",
+                "ESTIMATED_VALUE": "Estimated value",
+                "FLAT_OWNER_INFORMATION" : "Information about flat owner",
+				"DAYS": "Days",
+				"YEARS": "Years",
+				"REMOVE": "Remove"
 			},
             
             "ERROR_MSGS": {
                 "REQUIRED_MSG" : "This field is required!",
                 "NUMBER_ERR": "This field must be a number!",
                 "MIN_NUMBER_ERR": "Minimum value of this filed is ",
+                "MAX_NUMBER_ERR": "Maximum value of this filed is ",
                 "NAME_REQ" : "Name is required!",
                 "LASTNAME_REQ" : "Lastname is required!",
                 "PASSPORT_NUM_REQ" : "Passport number is required!",
@@ -69,7 +84,14 @@
                 "PHONE_REQ" : "Phone is required!",
                 "EMAIL_REQ" : "Email address is required!",
                 "CITIZEN_ID_13" : "Citizen ID value must have 13 digits!",
-                "EMAIL_FORMAT": "Bad email address format!"
+                "EMAIL_FORMAT": "Bad email address format!",
+                "PASSPORT_NUMBER_ERR": "Passport number must be integer, positive number!",
+                "PHONE_ERR": "Bad phone number format!",
+                "PACKAGE_ERR": "Insurance package is required!",
+                "BRAND_TYPE_REQ": "Brand adn type are required!",
+                "PLATE_NUMBER_REQ": "Plate number is required!",
+				"FLAT_RISK_REQ": "Flat risk is required!"
+                
                 
             },
             
@@ -115,7 +137,7 @@
 				"SEPT1_TITLE": "POPUNITE OBRAZAC ZA KUPOVINU OSIGURANJA",
 				"FIRST_STEP": "Prvi korak",
 				"REGION": "Region",
-				"INSURANCE_DURATION": "Trajanje osiguranja",
+				"INSURANCE_DURATION": "Trajanje ",
 				"NUMBER_OF_PEOPLE": "Broj osoba",
 				"PERSON":"Osoba",
 				"PEOPLE_INFORMATION": "Informacije o osiguranicima",
@@ -138,14 +160,29 @@
 				"EMAIL": "Email",
                 "CAR_FLAT_TITLE": "Pored putničkog možete izabrati osiguranje stana i osiguranje automobila",
                 "CONTRACTOR" : "Ova osoba je ugovarač. Molimo Vas unesite njegovu email adresu.",
-                "CONTRACTOR_TITLE" : "Ugovarač"
-
+                "CONTRACTOR_TITLE" : "Ugovarač",
+                "CANCEL_BTN": "Otkaži",
+                "PACKAGE": "Paket",
+                "SELECTED_PACKAGE": "Odabrani paket",
+                "CAR_AGE": "Godište",
+                "PLATE_NUMBER": "Broj tablica",
+                "BRAND_TYPE" : "Marka i tip",
+                "CAR_OWNER_INFORMATION" : "Informacije o vlasniku automobila",
+                "AREA": "Površina",
+                "RISKS": "Rizici",
+                "SELECTED_RISKS": "Izabrani rizici",
+                "ESTIMATED_VALUE": "Procenjena vrednost",
+                "FLAT_OWNER_INFORMATION" : "Informacije o vlasniku stana",
+				"DAYS": "Dana",
+				"YEARS": "Godina",
+				"REMOVE": "Ukloni"
 			},
             
             "ERROR_MSGS": {
                 "REQUIRED_MSG" : "Morate popuniti ovo polje!",
                 "NUMBER_ERR": "Vrednost ovog polja mora biti ceo broj!",
                 "MIN_NUMBER_ERR": "Vrednost ovog polja ne sme biti manja od ",
+                "MAX_NUMBER_ERR": "Vrednost ovog polja ne sme biti veća od ",
                 "NAME_REQ" : "Obavezno je uneti ime!",
                 "LASTNAME_REQ" : "Obavezno je uneti prezime!",
                 "PASSPORT_NUM_REQ" : "Obavezno je uneti broj pasoša!",
@@ -154,7 +191,14 @@
                 "PHONE_REQ" : "Obavezno je uneti telefon!",
                 "EMAIL_REQ" : "Obavezno je uneti email adresu!",
                 "CITIZEN_ID_13" : "JMBG mora imati 13 cifara!",
-                "EMAIL_FORMAT": "Loš format email adrese!"
+                "EMAIL_FORMAT": "Loš format email adrese!",
+                "PASSPORT_NUMBER_ERR": "Broj pasoša mora biti pozitivan ceo broj!",
+                "PHONE_ERR": "Loš format broja telefona!",
+                "PACKAGE_ERR": "Obavezno je uneti paket osiguranja!",
+                "BRAND_TYPE_REQ": "Obavezno je uneti tip i marku vozila!",
+                "PLATE_NUMBER_REQ": "Obavezno je uneti registracioni broj vozila!",
+				"FLAT_RISK_REQ": "Obavezno je odabrati bar jedan rizik osiguranja!"
+                
                 
             },
             

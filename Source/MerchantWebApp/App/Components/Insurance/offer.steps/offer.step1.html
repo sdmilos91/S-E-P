@@ -35,8 +35,9 @@
 
                             <div class="col-md-10">
                                 <div class="input-group">
-                                  <span class="input-group-addon myInputGroup" id="basic-addon1">{{'OFFER.INSURANCE_DURATION'|translate}}</span>
-                                   <input type="number" name="duration" ng-model="ic.duration" required aria-describedby="basic-addon1" min="1" class="form-control" ng-change="ic.refreshPrice()"/>
+                                  <span class="input-group-addon myInputGroup" id="basic-addon1">{{'OFFER.INSURANCE_DURATION'|translate}}({{'OFFER.DAYS'|translate}})</span>
+                                   <input type="number" name="duration" ng-model="ic.duration" required aria-describedby="basic-addon1" min="1" max="366" class="form-control" ng-change="ic.refreshPrice()"/>
+								  
                                 </div>
       
                                 <div ng-messages="ic.forms[0].duration.$error" style="color:maroon" role="alert">
@@ -59,7 +60,7 @@
                                     <li id="countryList">
                                         <div class="input-group" ng-repeat="age in ic.ages">
                                           <span class="input-group-addon myInputGroup" id="basic-addon2">{{age.value}}</span>
-                                          <input type="number" class="form-control" aria-describedby="basic-addon2" min="0" ng-model="ic.agesInputs[age.risk_Id]" ng-change="ic.countNoP()" name="nop">
+                                          <input type="number" class="form-control" aria-describedby="basic-addon2" min="0" max="5" ng-model="ic.agesInputs[age.risk_Id]" ng-change="ic.countNoP()" name="nop">
                                         </div>
                                     </li>
                                 </ul>
@@ -93,7 +94,7 @@
                                           </span>
                                         </div>
                                         <div class="input-group">
-                                          <select class="form-control" ng-model="ic.currentSportSelected" ng-options="obj.risk_Id as obj.value for obj in ic.sports | filter:ic.sportsFilter
+                                          <select class="form-control" style="text-align:center" ng-model="ic.currentSportSelected" ng-options="obj.risk_Id as obj.value for obj in ic.sports | filter:ic.sportsFilter
                                           ">
                                           </select>
                                           <span class="input-group-btn">

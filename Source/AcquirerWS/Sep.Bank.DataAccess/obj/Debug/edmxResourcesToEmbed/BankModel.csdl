@@ -26,22 +26,22 @@
     <Key>
       <PropertyRef Name="ACCOUNT_ID" />
     </Key>
-    <Property Name="ACCOUNT_ID" Type="Int64" Nullable="false" />
-    <Property Name="AMMOUNT" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
-    <Property Name="CREATION_DATE" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="MERCHANT_ID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="MERCHANT_PASSWORD" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Type="Int64" Name="ACCOUNT_ID" Nullable="false" />
+    <Property Type="Decimal" Name="AMMOUNT" Nullable="false" Precision="19" Scale="4" />
+    <Property Type="DateTime" Name="CREATION_DATE" Nullable="false" Precision="3" />
+    <Property Type="String" Name="MERCHANT_ID" Nullable="false" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Type="String" Name="MERCHANT_PASSWORD" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="CREDITCARDs" Relationship="BankModel.FK_CREDITCA_RELATIONS_ACCOUNT" FromRole="ACCOUNT" ToRole="CREDITCARD" />
   </EntityType>
   <EntityType Name="BANKORDER">
     <Key>
       <PropertyRef Name="BANKORDER_ID" />
     </Key>
-    <Property Name="BANKORDER_ID" Type="Int64" Nullable="false" />
-    <Property Name="PAYMENT_ID" Type="Int64" Nullable="false" />
-    <Property Name="PAN" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
-    <Property Name="BANKORDERTIMESTAMP" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="IS_ISSUER" Type="Boolean" Nullable="false" />
+    <Property Type="Int64" Name="BANKORDER_ID" Nullable="false" />
+    <Property Type="Int64" Name="PAYMENT_ID" Nullable="false" />
+    <Property Type="String" Name="PAN" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+    <Property Type="DateTime" Name="BANKORDERTIMESTAMP" Nullable="false" Precision="3" />
+    <Property Type="Boolean" Name="IS_ISSUER" Nullable="false" />
     <NavigationProperty Name="CREDITCARD" Relationship="BankModel.FK_BANKORDE_RELATIONS_CREDITCA" FromRole="BANKORDER" ToRole="CREDITCARD" />
     <NavigationProperty Name="TRANSACTION" Relationship="BankModel.FK_BANKORDE_RELATIONS_TRANSACT" FromRole="BANKORDER" ToRole="TRANSACTION" />
     <NavigationProperty Name="TRANSACTIONs" Relationship="BankModel.FK_TRANSACT_RELATIONS_BANKORDE" FromRole="BANKORDER" ToRole="TRANSACTION" />
@@ -50,11 +50,11 @@
     <Key>
       <PropertyRef Name="PAN" />
     </Key>
-    <Property Name="PAN" Type="String" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
-    <Property Name="ACCOUNT_ID" Type="Int64" />
-    <Property Name="SECURITYCODE" Type="String" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
-    <Property Name="CARDHOLDERNAME" Type="String" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
-    <Property Name="DATE" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Type="String" Name="PAN" Nullable="false" MaxLength="16" FixedLength="true" Unicode="false" />
+    <Property Type="Int64" Name="ACCOUNT_ID" />
+    <Property Type="String" Name="SECURITYCODE" Nullable="false" MaxLength="20" FixedLength="true" Unicode="false" />
+    <Property Type="String" Name="CARDHOLDERNAME" Nullable="false" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Type="DateTime" Name="DATE" Nullable="false" Precision="3" />
     <NavigationProperty Name="ACCOUNT" Relationship="BankModel.FK_CREDITCA_RELATIONS_ACCOUNT" FromRole="CREDITCARD" ToRole="ACCOUNT" />
     <NavigationProperty Name="BANKORDERs" Relationship="BankModel.FK_BANKORDE_RELATIONS_CREDITCA" FromRole="CREDITCARD" ToRole="BANKORDER" />
   </EntityType>
@@ -62,11 +62,11 @@
     <Key>
       <PropertyRef Name="PAYMENT_ID" />
     </Key>
-    <Property Name="PAYMENT_ID" Type="Int64" Nullable="false" />
-    <Property Name="BANKORDER_ID" Type="Int64" />
-    <Property Name="AMOUNT" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
-    <Property Name="TRANSACTIONORDERID" Type="Int64" Nullable="false" />
-    <Property Name="TRANSACTIONTIMESTAMP" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Type="Int64" Name="PAYMENT_ID" Nullable="false" />
+    <Property Type="Int64" Name="BANKORDER_ID" />
+    <Property Type="Decimal" Name="AMOUNT" Nullable="false" Precision="10" Scale="2" />
+    <Property Type="Int64" Name="TRANSACTIONORDERID" Nullable="false" />
+    <Property Type="DateTime" Name="TRANSACTIONTIMESTAMP" Nullable="false" Precision="3" />
     <NavigationProperty Name="BANKORDERs" Relationship="BankModel.FK_BANKORDE_RELATIONS_TRANSACT" FromRole="TRANSACTION" ToRole="BANKORDER" />
     <NavigationProperty Name="BANKORDER" Relationship="BankModel.FK_TRANSACT_RELATIONS_BANKORDE" FromRole="TRANSACTION" ToRole="BANKORDER" />
   </EntityType>
